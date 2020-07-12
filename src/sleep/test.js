@@ -1,6 +1,6 @@
-import { test } from 'uvu'
-import * as assert from 'uvu/assert'
-import sleep from './index.js'
+const { test } = require('uvu')
+const assert = require('uvu/assert')
+const sleep = require('./index')
 
 test('it returns a promise that is resolved after X miliseconds', async () => {
   const past = Date.now()
