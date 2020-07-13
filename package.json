@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "uvu src test"
+    "test": "uvu src test",
+    "fmt": "prettier --write src/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   },
   "homepage": "https://github.com/caiogondim/hourglass.js#readme",
   "devDependencies": {
+    "eslint": "^7.4.0",
     "esm": "^3.2.25",
+    "prettier": "^2.0.5",
     "uvu": "^0.2.1"
   }
 }
