@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="980px" height="605px" viewBox="0 0 980 605" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>banner</title>
+    <defs>
+        <polygon id="path-1" points="127.299363 0 254.598726 73.4963215 254.598726 220.488964 127.299363 293.985286 6.35988077e-14 220.488964 -2.11996026e-14 73.4963215"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="github-banner" transform="translate(-16.000000, -21.000000)">
+            <g id="ground" transform="translate(379.000000, 175.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+            </g>
+            <g id="noun_hourglass_2403491" transform="translate(400.000000, 178.000000)" fill="#2D2D2D" fill-rule="nonzero">
+                <g id="hourglass-pixelated">
+                    <rect id="Rectangle" x="48.8888889" y="97.3333333" width="24.4444444" height="24.3333333"></rect>
+                    <rect id="Rectangle" x="146.666667" y="97.3333333" width="24.4444444" height="24.3333333"></rect>
+                    <polygon id="Path" points="0 24.3333333 24.4444444 24.3333333 24.4444444 97.3333333 48.8888889 97.3333333 48.8888889 24.3333333 171.111111 24.3333333 171.111111 97.3333333 195.555556 97.3333333 195.555556 24.3333333 220 24.3333333 220 0 0 0"></polygon>
+                    <rect id="Rectangle" x="48.8888889" y="170.333333" width="24.4444444" height="24.3333333"></rect>
+                    <rect id="Rectangle" x="73.3333333" y="121.666667" width="24.4444444" height="48.6666667"></rect>
+                    <rect id="Rectangle" x="97.7777778" y="73" width="24.4444444" height="24.3333333"></rect>
+                    <rect id="Rectangle" x="122.222222" y="121.666667" width="24.4444444" height="48.6666667"></rect>
+                    <rect id="Rectangle" x="146.666667" y="170.333333" width="24.4444444" height="24.3333333"></rect>
+                    <polygon id="Path" points="146.666667 267.666667 146.666667 243.333333 122.222222 243.333333 122.222222 219 97.7777778 219 97.7777778 243.333333 73.3333333 243.333333 73.3333333 267.666667 73.3333333 267.666667 48.8888889 267.666667 48.8888889 194.666667 24.4444444 194.666667 24.4444444 267.666667 0 267.666667 0 292 220 292 220 267.666667 195.555556 267.666667 195.555556 194.666667 171.111111 194.666667 171.111111 267.666667"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
