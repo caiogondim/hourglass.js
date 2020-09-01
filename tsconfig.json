@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "downlevelIteration": true,
+    "target": "ES6",
+    "pretty": true,
+    "strict": true,
+    "lib": ["esnext", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true
+  },
+  "include": ["./src/**/*.js"]
+}

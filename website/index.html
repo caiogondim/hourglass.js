@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hourglass.js</title>
+  <link rel="icon" type="image/png" href="./icon-light.png">
+  <link rel="stylesheet" href="https://superstylin.caiogondim.com/src/index.css">
+  <style type="text/css">
+    html, body {
+      height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      grid-template-columns: min-content auto;
+      grid-template-rows: 100vh;
+      grid-template-areas:
+        "sidebar main";
+    }
+
+    header {
+      border-bottom: 1px solid black;
+      grid-area: header;
+      padding: 1rem 2rem;
+    }
+
+    header h6 {
+      margin: 0;
+      display: inline-block;
+    }
+
+    header picture, header picture img {
+      width: 0.7rem;
+    }
+
+    #sidebarBtn {
+      width: 200px;
+      height: 200px;
+
+    }
+
+    #svgPath {
+      fill: red;
+    }
+
+    @media (prefers-color-scheme: light) {
+      #svgPath {
+        fill: blue;
+      }      
+    }
+
+    aside {
+      grid-area: sidebar;
+      padding: 2rem;
+      background-color: #272727;
+      overflow: scroll;
+    }
+
+    aside h6 {
+      margin-top: 0;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside h6 + ul {
+      margin-top: -1rem;
+    }
+
+    main {
+      grid-area: main;
+      padding: 2rem;
+      overflow: scroll;
+      display: grid;
+      background-color: #343334;
+    }
+
+    .main-content {
+      max-width: 50ch;
+      justify-self: center;
+      padding-bottom: 2rem;
+    }
+
+    .main-content h6 {
+      /*margin-top: 0;*/
+    }
+
+    ul {
+      padding-left: 1ch;
+    }
+
+    picture {
+      width: 2rem;
+      display: inline-block;      
+      margin-right: 1ch;
+      margin-bottom: 5rem;
+    }
+
+    picture img {
+     /*display: block;      */
+     height: 2.3rem;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 3rem;
+      display: inline-block;
+    }
+
+    section {
+      margin-top: 3.815rem;
+    }
+
+    .section-header {
+      border-top: 2px solid white;
+      padding-top: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-function {
+      margin-top: 2rem;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- <header>
+    <picture>
+      <img src="./icon-dark.png" />
+    </picture>
+    <h6>Hourglass</h6>
+    <button id="sidebarBtn">
+      <svg width="150px" height="117px" viewBox="0 0 150 117" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g transform="translate(-1672.000000, -1462.000000)" fill-rule="nonzero">
+                  <g id="svgPath" transform="translate(487.000000, 622.000000)" fill="#000000">
+                      <g transform="translate(1185.200000, 840.000000)">
+                          <path d="M19.9375,116.998 L128.775,116.998 C141.861,116.998 148.648,110.2109 148.648,97.27148 L148.648,20.3672 C148.648,7.4766 141.861,0.6895 128.775,0.6895 L19.9375,0.6895 C6.9004,0.6895 0.0645,7.4277 0.0645,20.3672 L0.0645,97.27148 C0.0645,110.2598 6.9004,116.998 19.9375,116.998 Z M20.5723,106.2559 C14.2246,106.2559 10.8066,102.98438 10.8066,96.39258 L10.8066,21.2949 C10.8066,14.7031 14.2246,11.3828 20.5723,11.3828 L49.1367,11.3828 L49.1367,106.2559 L20.5723,106.2559 Z M128.141,11.3828 C134.391,11.3828 137.906,14.7031 137.906,21.2949 L137.906,96.39258 C137.906,102.98438 134.391,106.2559 128.141,106.2559 L59.3906,106.2559 L59.3906,11.3828 L128.141,11.3828 Z M36.8809,34.5762 C38.8828,34.5762 40.5918,32.8672 40.5918,31.0117 C40.5918,29.0586 38.8828,27.3984 36.8809,27.3984 L23.1602,27.3984 C21.1582,27.3984 19.4492,29.0586 19.4492,31.0117 C19.4492,32.8672 21.1582,34.5762 23.1602,34.5762 L36.8809,34.5762 Z M36.8809,51.5195 C38.8828,51.5195 40.5918,49.8594 40.5918,47.9062 C40.5918,45.9531 38.8828,44.3418 36.8809,44.3418 L23.1602,44.3418 C21.1582,44.3418 19.4492,45.9531 19.4492,47.9062 C19.4492,49.8594 21.1582,51.5195 23.1602,51.5195 L36.8809,51.5195 Z M36.8809,68.4141 C38.8828,68.4141 40.5918,66.8027 40.5918,64.8496 C40.5918,62.8965 38.8828,61.2852 36.8809,61.2852 L23.1602,61.2852 C21.1582,61.2852 19.4492,62.8965 19.4492,64.8496 C19.4492,66.8027 21.1582,68.4141 23.1602,68.4141 L36.8809,68.4141 Z" id="Shape"></path>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </svg>
+    </button>
+  </header> -->
+  <aside>
+    <h6>Introduction</h6>
+    <h6>Generators</h6>
+    <ul>
+      <li>uniq</li>
+      <li>take</li>
+      <li>drop</li>
+      <li>filter</li>
+      <li>slowStart</li>
+      <li>throttle</li>
+      <li>always</li>
+      <li>oneOf</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+    </ul>
+    <h6>Async</h6>
+    <ul>
+      <li>timeout</li>
+      <li>bucket</li>
+      <li>pipe</li>
+      <li>retry</li>
+      <li>sleep</li>
+      <li>delay</li>
+      <li>parallel</li>
+      <li>serial</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+    </ul>
+    <h6>Schedulers</h6>
+    <ul>
+      <li>frequency</li>
+      <li>asap</li>
+      <li>priorityQueue</li>
+      <li>animationFrame</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+      <li>Lorem</li>
+    </ul>
+  </aside>
+  <main>
+    <div class="main-content">
+      <!-- <picture>
+        <img src="./icon-dark.png" />
+      </picture> -->
+      <!-- <h1>⧗&nbsp;&nbsp;hourglass.js</h1> -->
+      <!-- <h1>hourglass.js&nbsp;&nbsp;⌛</h1> -->
+      <h1>hourglass.js&nbsp;&nbsp;⧗</h1>
+      
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <h6>Lorem</h6>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <pre><code>function foo() {}</code></pre>
+
+      <section>
+        <h6 class="section-header">Generators</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function">slowStart&nbsp;&nbsp;&nbsp;<code>slowStart({ foo, bar })</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <pre><code>for (let i = 0; i < 100; i += 1) {
+  await frequency({ hz: 60 })
+}</code></pre>
+        
+        <h6 class="section-function"><code>uniq</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <pre><code>for (let i = 0; i < 100; i += 1) {
+  await frequency({ hz: 60 })
+}</code></pre>
+      </section>
+
+      <section>
+        <h6 class="section-header">Async</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>frequency</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <pre><code>for (let i = 0; i < 100; i += 1) {
+  await frequency({ hz: 60 })
+}</code></pre>
+
+        <h6 class="section-function"><code>speedBump</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>backoff</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>deferred</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>delay</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>inspectable</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+      </section>
+
+      <section>
+        <h6 class="section-header">Scheduler</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>priorityQueue</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <pre><code>const queue = new PriorityQueue()
+queue.schedule(thunk, { priority: 12 })</code></pre>
+
+        <h6 class="section-function"><code>asap</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>backoff</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>deferred</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h6 class="section-function"><code>delay</code></h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+      </section>
+    </div>
+    
+
+  </main>
+</body>
+</html>
