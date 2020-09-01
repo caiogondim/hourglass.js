@@ -1,4 +1,4 @@
-const sleep = require('../sleep');
+const sleep = require('../sleep')
 
 /**
  * @param {Object} options
@@ -7,11 +7,11 @@ const sleep = require('../sleep');
  * @returns {function(): Promise<void>}
  */
 function createBackoff({ max = 30000, initial = 1000 } = {}) {
-  let cur = initial;
+  let cur = initial
   return async () => {
-    await sleep(cur);
-    cur = Math.min(cur * 2, max);
-  };
+    await sleep(cur)
+    cur = Math.min(cur * 2, max)
+  }
 }
 
-module.exports = { createBackoff };
+module.exports = { createBackoff }

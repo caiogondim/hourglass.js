@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "uvu src test",
-    "fmt": "prettier --write src/**/*.js"
+    "test": "jest",
+    "jest": "jest",
+    "fmt": "prettier --write src/**/*.js",
+    "type-check": "tsc --p './tsconfig.json'"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,12 @@
   "devDependencies": {
     "eslint": "^7.4.0",
     "esm": "^3.2.25",
+    "jest": "^26.2.2",
     "prettier": "^2.0.5",
+    "typescript": "^4.0.2",
     "uvu": "^0.2.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./src/__jest__/setup.js"]
   }
 }
