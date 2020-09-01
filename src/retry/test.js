@@ -1,14 +1,5 @@
+const sleep = require('../sleep');
 const retry = require('.');
-
-/**
- * @param {number} ms
- * @returns {Promise<void>}
- */
-function sleep(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-}
 
 /**
  * @param {number} n
@@ -18,7 +9,6 @@ function createThrowUntilN(n) {
   let callCount = 0;
   return async () => {
     callCount += 1;
-    await sleep(100);
     if (callCount < n) {
       throw new Error();
     } else {
@@ -79,4 +69,17 @@ it('executes `onRetry` on each retry', async () => {
   const throwUntil3 = createThrowUntilN(3);
   await retry(throwUntil3, { onRetry, maxAttempts });
   expect(onRetryCalls).toBe(maxAttempts - 1);
+});
+
+it('backs off between each retry', async () => {
+  const maxAttempts = 3;
+  const throwUntil3 = createThrowUntilN(3);
+  async function backoff() {
+    await sleep(100);
+  }
+  const before = Date.now();
+  await retry(throwUntil3, { maxAttempts, backoff });
+  const delta = Date.now() - before;
+  expect(delta).toBeGreaterThanOrEqual(200);
+  expect(delta).toBeLessThanOrEqual(220);
 });

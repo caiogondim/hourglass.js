@@ -1,14 +1,17 @@
+const { createBackoff } = require('../backoff');
+
 /**
  * @param {function(): Promise<any>} asyncThunk
  * @param {Object} options
  * @param {Number} [options.maxAttempts]
  * @param {function(any): boolean} [options.shouldRetry]
  * @param {function(): void} [options.onRetry]
+ * @param {function(): Promise<void>} [options.backoff]
  * @returns {ReturnType<asyncThunk>}
  */
 async function retry(
   asyncThunk,
-  { maxAttempts = 3, shouldRetry = () => false, onRetry = () => {} } = {}
+  { maxAttempts = 3, shouldRetry = () => false, onRetry = () => {}, backoff = createBackoff() } = {}
 ) {
   let response;
 
@@ -26,6 +29,8 @@ async function retry(
         onRetry();
       }
     }
+
+    await backoff();
   }
 
   return response;
