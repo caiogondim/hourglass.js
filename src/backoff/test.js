@@ -1,27 +1,60 @@
-const backoff = require("./index");
-const { test } = require("uvu");
-const assert = require("uvu/assert");
+const { createBackoff } = require('.');
 
-function createThunkFailUntilNthCall(n) {
-  let curN = 0;
-  return () => {
-    return new Promise((resolve, reject) => {
-      if (curN < n) {
-        curN += 1;
-        return reject();
-      }
-      resolve();
-    });
-  };
-}
+jest.setTimeout(30000);
 
-test("", async () => {
-  const failBeforeThirdAttempt = createThunkFailUntilNthCall(3);
-  const past = Date.now();
-  await backoff(failBeforeThirdAttempt);
-  const deltaTime = Date.now() - past;
-  assert.ok(deltaTime >= 7000); // 1 + 2 + 4 = 7
-  assert.ok(deltaTime < 8000);
+it('increments the previous back off time by multiplying by 2', async () => {
+  const backoff = createBackoff();
+
+  let before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(1000);
+  expect(Date.now() - before).toBeLessThan(1100);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(2000);
+  expect(Date.now() - before).toBeLessThan(2100);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(4000);
+  expect(Date.now() - before).toBeLessThan(4100);
 });
 
-test.run();
+it('never backs off for more than `max` ms', async () => {
+  const backoff = createBackoff({ max: 2000 });
+
+  let before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(1000);
+  expect(Date.now() - before).toBeLessThan(1100);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(2000);
+  expect(Date.now() - before).toBeLessThan(2100);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(2000);
+  expect(Date.now() - before).toBeLessThan(2100);
+});
+
+it('accepts `initial` as the initial back off time', async () => {
+  const backoff = createBackoff({ initial: 10 });
+
+  let before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(10);
+  expect(Date.now() - before).toBeLessThan(20);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(20);
+  expect(Date.now() - before).toBeLessThan(30);
+
+  before = Date.now();
+  await backoff();
+  expect(Date.now() - before).toBeGreaterThanOrEqual(40);
+  expect(Date.now() - before).toBeLessThan(50);
+});

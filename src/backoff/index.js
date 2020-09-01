@@ -1,33 +1,17 @@
-const sleep = require("../sleep");
+const sleep = require('../sleep');
 
-const defaultOptions = {
-  initialDelay: 1000,
-  maxDelay: 30000,
-  maxAttempts: Infinity,
-  jitter: false,
-  intervalGenerator: () => {},
-};
-
-async function backoff(thunk, options = {}) {
-  options = {
-    ...defaultOptions,
-    ...options,
+/**
+ * @param {Object} options
+ * @param {number} [options.max]
+ * @param {number} [options.initial]
+ * @returns {function(): Promise<void>}
+ */
+function createBackoff({ max = 30000, initial = 1000 } = {}) {
+  let cur = initial;
+  return async () => {
+    await sleep(cur);
+    cur = Math.min(cur * 2, max);
   };
-  let curAttempt = 0;
-  let delay = options.initialDelay;
-  while (true) {
-    try {
-      if (curAttempt > 0) {
-        await sleep(delay);
-      }
-      return await thunk();
-    } catch (error) {
-      if (curAttempt > 0) {
-        delay = delay * 2;
-      }
-      curAttempt += 1;
-    }
-  }
 }
 
-module.exports = backoff;
+module.exports = { createBackoff };
