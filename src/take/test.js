@@ -1,15 +1,5 @@
 const take = require('.')
-
-/**
- * @yields {number}
- */
-function* createNumbersGenerator() {
-  let x = 1
-  while (true) {
-    yield x
-    x += 1
-  }
-}
+const createNumbersGenerator = require('../_shared/create-numbers-generator')
 
 it('takes the first N values from a generator', () => {
   const numbersGenerator = take(createNumbersGenerator(), 5)

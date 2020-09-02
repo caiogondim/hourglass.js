@@ -1,16 +1,6 @@
 const map = require('.')
 const take = require('../take')
-
-/**
- * @yields {number}
- */
-function* createNumbersGenerator() {
-  let x = 1
-  while (true) {
-    yield x
-    x += 1
-  }
-}
+const createNumbersGenerator = require('../_shared/create-numbers-generator')
 
 it('maps over values from generator passed as argument', async () => {
   const evenNumbersGenerator = map(
