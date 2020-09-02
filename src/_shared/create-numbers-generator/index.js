@@ -1,3 +1,5 @@
+const toAsyncGenerator = require('../to-async-generator')
+
 /**
  * @yields {number}
  */
@@ -9,4 +11,7 @@ function* createNumbersGenerator() {
   }
 }
 
-module.exports = createNumbersGenerator
+module.exports = {
+  sync: createNumbersGenerator,
+  async: toAsyncGenerator(createNumbersGenerator)
+}
