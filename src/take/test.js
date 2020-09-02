@@ -1,5 +1,7 @@
 const take = require('.')
-const { async: createNumbersGenerator } = require('../_shared/create-numbers-generator')
+const {
+  async: createNumbersGenerator,
+} = require('../_shared/create-numbers-generator')
 
 it('takes the first N values from a generator', async () => {
   const numbersGenerator = take(createNumbersGenerator(), 5)

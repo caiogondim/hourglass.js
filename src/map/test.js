@@ -1,6 +1,8 @@
 const map = require('.')
 const take = require('../take')
-const { async: createNumbersGenerator } = require('../_shared/create-numbers-generator')
+const {
+  async: createNumbersGenerator,
+} = require('../_shared/create-numbers-generator')
 
 it('maps over values from generator passed as argument', async () => {
   const evenNumbersGenerator = map(

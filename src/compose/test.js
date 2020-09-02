@@ -2,7 +2,9 @@ const compose = require('./')
 const map = require('../map')
 const take = require('../take')
 const delay = require('../delay')
-const { async: createNumbersGenerator } = require('../_shared/create-numbers-generator')
+const {
+  async: createNumbersGenerator,
+} = require('../_shared/create-numbers-generator')
 
 it('composes generators', async () => {
   const composed = compose(

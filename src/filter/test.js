@@ -1,7 +1,9 @@
 const filter = require('.')
 const take = require('../take')
 const compose = require('../compose')
-const { async: createNumbersGenerator } = require('../_shared/create-numbers-generator')
+const {
+  async: createNumbersGenerator,
+} = require('../_shared/create-numbers-generator')
 
 it('filters values from generator passed as argument', async () => {
   const oddNumberGenerator = compose(
@@ -9,8 +11,8 @@ it('filters values from generator passed as argument', async () => {
     async function* (gen) {
       yield* take(gen, 10)
     },
-    async function*(gen) {
-      yield* filter(gen, n => Boolean(n % 2))
+    async function* (gen) {
+      yield* filter(gen, (n) => Boolean(n % 2))
     }
   )
   const output = []

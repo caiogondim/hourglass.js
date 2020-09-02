@@ -1,7 +1,9 @@
 const delay = require('.')
 const take = require('../take')
 const compose = require('../compose')
-const { async: createNumbersGenerator } = require('../_shared/create-numbers-generator')
+const {
+  async: createNumbersGenerator,
+} = require('../_shared/create-numbers-generator')
 
 it('delay generator', async () => {
   const composed = compose(
