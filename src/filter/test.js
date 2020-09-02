@@ -9,10 +9,10 @@ const filter = require('.')
 function* createNumbersGenerator({ max }) {
   let x = 1
   while (true) {
-    if (x >= max) {
-      return x
-    }
     yield x
+    if (x >= max) {
+      return
+    }
     x += 1
   }
 }
