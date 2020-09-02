@@ -1,25 +1,20 @@
 const map = require('.')
+const take = require('../take')
 
 /**
- *
- * @param {Object} options
- * @param {number} options.max
- * @returns {IterableIterator<number>}
+ * @yields {number}
  */
-function* createNumbersGenerator({ max }) {
+function* createNumbersGenerator() {
   let x = 1
   while (true) {
     yield x
-    if (x >= max) {
-      return
-    }
     x += 1
   }
 }
 
 it('maps over values from generator passed as argument', async () => {
   const evenNumbersGenerator = map(
-    createNumbersGenerator({ max: 5 }),
+    take(createNumbersGenerator(), 5),
     (n) => n * 2
   )
   const generatedValues = []

@@ -1,24 +1,19 @@
 const filter = require('.')
+const take = require('../take')
 
 /**
- *
- * @param {Object} options
- * @param {number} options.max
- * @returns {IterableIterator<number>}
+ * @yields {number}
  */
-function* createNumbersGenerator({ max }) {
+function* createNumbersGenerator() {
   let x = 1
   while (true) {
     yield x
-    if (x >= max) {
-      return
-    }
     x += 1
   }
 }
 
 it('filters values from generator passed as argument', () => {
-  const oddNumberGenerator = filter(createNumbersGenerator({ max: 10 }), (n) =>
+  const oddNumberGenerator = filter(take(createNumbersGenerator(), 10), (n) =>
     Boolean(n % 2)
   )
   const generatedValues = []
