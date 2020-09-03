@@ -35,7 +35,7 @@ it('enqueues calls so they run in series', async () => {
   await Promise.all([counter(), counter(), counter(), counter(), counter()])
   const now1 = Date.now()
 
-  expect(now1 - before1).toBeGreaterThan(90)
+  expect(now1 - before1).toBeGreaterThanOrEqual(90)
   expect(now1 - before1).toBeLessThan(110)
 
   const queuedCounter = queued(createAsyncCounter())
@@ -48,7 +48,7 @@ it('enqueues calls so they run in series', async () => {
     queuedCounter(),
   ])
   const now2 = Date.now()
-  expect(now2 - before2).toBeGreaterThan(475)
+  expect(now2 - before2).toBeGreaterThanOrEqual(475)
   expect(now2 - before2).toBeLessThan(525)
 })
 

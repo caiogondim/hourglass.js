@@ -82,6 +82,6 @@ it('backs off between each retry', async () => {
   const before = Date.now()
   await retry(throwUntil3, { maxAttempts, backoff })
   const delta = Date.now() - before
-  expect(delta).toBeGreaterThan(200)
+  expect(delta).toBeGreaterThanOrEqual(200)
   expect(delta).toBeLessThan(220)
 })
