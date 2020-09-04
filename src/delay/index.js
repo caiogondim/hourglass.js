@@ -1,10 +1,24 @@
 const sleep = require('../sleep')
 
-async function* delay(gen, ms) {
+async function* delay(ms, gen) {
   for await (let val of gen) {
     await sleep(ms)
     yield val
   }
 }
 
-module.exports = delay
+function composable(ms) {
+  return async function* composableDelay(gen) {
+    yield* delay(ms, gen)
+  }
+}
+
+function main(ms, gen) {
+  if (!gen) {
+    return composable(ms)
+  } else {
+    return delay(ms, gen)
+  }
+}
+
+module.exports = main

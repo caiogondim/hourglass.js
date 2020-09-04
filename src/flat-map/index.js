@@ -1,15 +1,29 @@
 const isIterable = require('../_shared/is-iterable')
 
-async function* flatMap(gen, fn) {
+async function* flatMap(mapper, gen) {
   for await (let val of gen) {
-    let output = await fn(val)
+    let output = await mapper(val)
     if (!isIterable(output)) {
       output = [output]
     }
-    for (let outputItem of [...output]) {
+    for (let outputItem of output) {
       yield outputItem
     }
   }
 }
 
-module.exports = flatMap
+function composable(mapper) {
+  return async function* composableFlatMap(gen) {
+    yield* flatMap(mapper, gen)
+  }
+}
+
+function main(mapper, gen) {
+  if (!gen) {
+    return composable(mapper)
+  } else {
+    return flatMap(mapper, gen)
+  }
+}
+
+module.exports = main

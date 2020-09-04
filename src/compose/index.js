@@ -1,8 +1,8 @@
 const isGenerator = require('../_shared/is-generator')
 const isPromise = require('../_shared/is-promise')
 
-function validateGenerators(gens) {
-  if (!gens || gens.length <= 2) {
+function validateGenerators(...gens) {
+  if (!gens || gens.length < 2) {
     throw new TypeError('Must have at least 2 generators')
   }
 
@@ -19,7 +19,7 @@ function validateGenerators(gens) {
 }
 
 async function* compose(...gens) {
-  validateGenerators(gens)
+  validateGenerators(...gens)
 
   // Transforms foo -> bar -> qux into qux(bar(foo()))
   let composed = gens[0]()

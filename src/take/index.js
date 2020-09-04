@@ -1,10 +1,4 @@
-/**
- * @template T
- * @param {IterableIterator<T>} gen
- * @param {number} n
- * @yields {T}
- */
-async function* take(gen, n) {
+async function* take(n, gen) {
   let count = 0
   for await (let val of gen) {
     if (count >= n) return
@@ -13,4 +7,18 @@ async function* take(gen, n) {
   }
 }
 
-module.exports = take
+function composable(n) {
+  return async function* composableTake(gen) {
+    yield* take(n, gen)
+  }
+}
+
+function main(n, gen) {
+  if (!gen) {
+    return composable(n)
+  } else {
+    return take(n, gen)
+  }
+}
+
+module.exports = main

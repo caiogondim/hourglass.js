@@ -9,15 +9,9 @@ const {
 it('composes generators', async () => {
   const composed = compose(
     createNumbersGenerator,
-    async function* (gen) {
-      yield* delay(gen, 10)
-    },
-    async function* (gen) {
-      yield* map(gen, (x) => x * 2)
-    },
-    async function* (gen) {
-      yield* take(gen, 5)
-    }
+    delay(1),
+    map((x) => x * 2),
+    take(5)
   )
   const output = []
   for await (let val of composed) {
