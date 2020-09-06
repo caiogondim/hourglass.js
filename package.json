@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "jest": "jest",
-    "fmt": "prettier --write src/**/*.js",
+    "fmt": "prettier --write 'src/**/*.js'",
     "type-check": "tsc --p './tsconfig.json'"
   },
   "repository": {
