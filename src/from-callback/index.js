@@ -1,16 +1,19 @@
 const defer = require('../defer')
 
 function fromCallback() {
-  let [promise, resolve, reject] = defer()
+  const queue = [defer()]
 
   function callback(val) {
+    const [_, resolve] = queue[queue.length - 1]
     resolve(val)
+    queue.push(defer())
   }
 
   async function* generator() {
     while (true) {
-      ;[promise, resolve, reject] = defer()
+      const promise = queue[0][0]
       yield await promise
+      queue.shift()
     }
   }
   return [generator(), callback]
