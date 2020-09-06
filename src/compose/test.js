@@ -2,10 +2,9 @@ const compose = require('./')
 const map = require('../map')
 const take = require('../take')
 const delay = require('../delay')
-const {
-  async: createNumbersGenerator,
-} = require('../_shared/create-numbers-generator')
+const createNumbersGenerator = require('../_shared/create-numbers-generator')
 const createFibonacciGenerator = require('../_shared/create-fibonacci-generator')
+const toAsyncGenerator = require('../_shared/to-async-generator')
 
 it('composes generators', async () => {
   const composed = compose(
@@ -49,7 +48,7 @@ it('accepts a generator as first argument', async () => {
 
 it('accepts an AsyncGeneratorFunction as first argument', async () => {
   const composed = compose(
-    createNumbersGenerator,
+    toAsyncGenerator(createNumbersGenerator),
     delay(1),
     map((x) => x * 2),
     take(5)

@@ -1,7 +1,5 @@
 const enumerate = require('.')
-const {
-  async: createNumbersGenerator,
-} = require('../_shared/create-numbers-generator')
+const createNumbersGenerator = require('../_shared/create-numbers-generator')
 const take = require('../take')
 const map = require('../map')
 const compose = require('../compose')

@@ -1,4 +1,6 @@
 # Today
+- rename: create-number-generator -> create-async-number-generator
+- eslint
 
 # Someday
 - Add toBeNear Jest matcher

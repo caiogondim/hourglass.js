@@ -1,8 +1,6 @@
 const flatMap = require('.')
 const take = require('../take')
-const {
-  async: createNumbersGenerator,
-} = require('../_shared/create-numbers-generator')
+const createNumbersGenerator = require('../_shared/create-numbers-generator')
 const compose = require('../compose')
 
 it('flats generated value if it is an array', async () => {

@@ -1,7 +1,5 @@
 const take = require('../take')
-const {
-  async: createNumberGenerator,
-} = require('../_shared/create-numbers-generator')
+const createNumberGenerator = require('../_shared/create-numbers-generator')
 const compose = require('../compose')
 const delay = require('../delay')
 const onIdle = require('.')
