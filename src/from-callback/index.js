@@ -4,7 +4,7 @@ function fromCallback() {
   const queue = [defer()]
 
   function callback(val) {
-    const [_, resolve] = queue[queue.length - 1]
+    const [, resolve] = queue[queue.length - 1]
     resolve(val)
     queue.push(defer())
   }

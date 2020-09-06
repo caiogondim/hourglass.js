@@ -1,5 +1,4 @@
 const isGenerator = require('../_shared/is-generator')
-const isPromise = require('../_shared/is-promise')
 const isAsyncGeneratorFunction = require('../_shared/is-async-generator-function')
 const isGeneratorFunction = require('../_shared/is-generator-function')
 

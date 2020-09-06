@@ -2,7 +2,7 @@ const isGenerator = require('.')
 
 it('returns true if argument is a generator', () => {
   function* foo() {
-    return
+    yield
   }
   expect(isGenerator(foo())).toBe(true)
 })

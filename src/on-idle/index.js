@@ -1,5 +1,4 @@
 async function* onIdle(ms, callback, gen) {
-  let wasIdle = false
   let timeout = null
   let callbackReturn = undefined
 

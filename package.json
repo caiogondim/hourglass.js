@@ -7,6 +7,7 @@
     "test": "jest",
     "jest": "jest",
     "fmt": "prettier --write 'src/**/*.js'",
+    "lint": "eslint --ext '.js' --report-unused-disable-directives .",
     "type-check": "tsc --p './tsconfig.json'"
   },
   "repository": {
@@ -21,7 +22,7 @@
   },
   "homepage": "https://github.com/caiogondim/hourglass.js#readme",
   "devDependencies": {
-    "eslint": "^7.4.0",
+    "eslint": "^7.8.1",
     "esm": "^3.2.25",
     "jest": "^26.2.2",
     "prettier": "^2.0.5",

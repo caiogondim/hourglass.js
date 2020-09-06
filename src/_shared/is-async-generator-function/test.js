@@ -2,7 +2,7 @@ const isAsyncGeneratorFunction = require('.')
 
 it('returns true if argument is a generator', () => {
   async function* foo() {
-    return
+    yield
   }
   expect(isAsyncGeneratorFunction(foo)).toBe(true)
 })

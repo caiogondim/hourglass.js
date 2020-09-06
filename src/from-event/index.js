@@ -3,8 +3,9 @@ const defer = require('../defer')
 async function* fromEvent(eventName, emitter) {
   let queue = [defer()]
 
+  // $TODO: support addEventListener APi
   emitter.on(eventName, (...args) => {
-    const [_, resolve] = queue[queue.length - 1]
+    const [, resolve] = queue[queue.length - 1]
     resolve(...args)
     queue.push(defer())
   })

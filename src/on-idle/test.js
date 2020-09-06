@@ -33,6 +33,8 @@ it('executes callback after X ms from last generated value by generator', async 
     })
   )
 
+  // $TODO: change for `await consume(composed)`
+  // eslint-disable-next-line no-unused-vars, no-empty
   for await (let val of composed) {
   }
 
