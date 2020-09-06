@@ -2,6 +2,7 @@ const compose = require('./')
 const map = require('../map')
 const take = require('../take')
 const delay = require('../delay')
+const consume = require('../consume')
 const createNumbersGenerator = require('../_shared/create-numbers-generator')
 const createFibonacciGenerator = require('../_shared/create-fibonacci-generator')
 const toAsyncGenerator = require('../_shared/to-async-generator')
@@ -13,10 +14,7 @@ it('composes generators', async () => {
     map((x) => x * 2),
     take(5)
   )
-  const output = []
-  for await (let val of composed) {
-    output.push(val)
-  }
+  const output = await consume(composed)
   expect(output).toEqual([2, 4, 6, 8, 10])
 })
 
@@ -39,10 +37,7 @@ it('accepts a generator as first argument', async () => {
     map((x) => x * 2),
     take(5)
   )
-  const output = []
-  for await (let val of composed) {
-    output.push(val)
-  }
+  const output = await consume(composed)
   expect(output).toEqual([2, 4, 6, 8, 10])
 })
 
@@ -53,10 +48,7 @@ it('accepts an AsyncGeneratorFunction as first argument', async () => {
     map((x) => x * 2),
     take(5)
   )
-  const output = []
-  for await (let val of composed) {
-    output.push(val)
-  }
+  const output = await consume(composed)
   expect(output).toEqual([2, 4, 6, 8, 10])
 })
 
@@ -67,9 +59,6 @@ it('accepts a GeneratorFunction as first argument', async () => {
     map((x) => x * 2),
     take(5)
   )
-  const output = []
-  for await (let val of composed) {
-    output.push(val)
-  }
+  const output = await consume(composed)
   expect(output).toEqual([2, 2, 4, 6, 10])
 })
