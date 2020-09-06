@@ -4,10 +4,14 @@ it('returns true for iterable objects', () => {
   expect(isIterable([1, 2])).toBe(true)
   expect(isIterable(new Set([1, 2]))).toBe(true)
   expect(isIterable(new Set([1, 2]))).toBe(true)
-  expect(isIterable({ *[Symbol.iterator]() {
-    yield 1;
-    yield 2;
-  }})).toBe(true)
+  expect(
+    isIterable({
+      *[Symbol.iterator]() {
+        yield 1
+        yield 2
+      },
+    })
+  ).toBe(true)
 })
 
 it('returns false for non-iterable objects', () => {
