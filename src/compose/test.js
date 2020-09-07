@@ -15,7 +15,7 @@ it('composes generators', async () => {
     take(5)
   )
   const output = await consume(composed)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([0, 2, 4, 6, 8])
 })
 
 it('throws error if any of the passed arguments are not an async generator function', async () => {
@@ -38,7 +38,7 @@ it('accepts a generator as first argument', async () => {
     take(5)
   )
   const output = await consume(composed)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([0, 2, 4, 6, 8])
 })
 
 it('accepts an AsyncGeneratorFunction as first argument', async () => {
@@ -49,7 +49,7 @@ it('accepts an AsyncGeneratorFunction as first argument', async () => {
     take(5)
   )
   const output = await consume(composed)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([0, 2, 4, 6, 8])
 })
 
 it('accepts a GeneratorFunction as first argument', async () => {

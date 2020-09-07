@@ -1,8 +1,7 @@
 const sleep = require('../sleep')
 
 async function condition(predicate, { interval = 1000 } = {}) {
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  for (;;) {
     if (await predicate()) {
       return
     }

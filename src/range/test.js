@@ -8,10 +8,16 @@ it('skip all nth values smaller than `begin` and ends the generator when n is gr
 })
 
 it('throws error if begin or end is not an integer number', async () => {
-  await expect(() => consume(range(5, 10.2, createNumbersGenerator()))).rejects.toThrow(TypeError)
-  await expect(() => consume(range(3.14, 7, createNumbersGenerator()))).rejects.toThrow(TypeError)
+  await expect(() =>
+    consume(range(5, 10.2, createNumbersGenerator()))
+  ).rejects.toThrow(TypeError)
+  await expect(() =>
+    consume(range(3.14, 7, createNumbersGenerator()))
+  ).rejects.toThrow(TypeError)
 })
 
 it('throws error if begin is greater than end', async () => {
-  await expect(() => consume(range(10, 2, createNumbersGenerator()))).rejects.toThrow(RangeError)
+  await expect(() =>
+    consume(range(10, 2, createNumbersGenerator()))
+  ).rejects.toThrow(RangeError)
 })

@@ -10,7 +10,7 @@ it('maps over values from generator passed as argument', async () => {
     take(5, createNumbersGenerator())
   )
   const output = await consume(evenNumbersGenerator)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([0, 2, 4, 6, 8])
 })
 
 it('is composable', async () => {
@@ -20,5 +20,5 @@ it('is composable', async () => {
     take(5)
   )
   const output = await consume(evenNumbersGenerator)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([0, 2, 4, 6, 8])
 })

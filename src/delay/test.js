@@ -11,11 +11,11 @@ it('delays generator', async () => {
     yield* delay(10, gen)
   })
   const output = await consume(composed)
-  expect(output).toEqual([1, 2, 3, 4, 5])
+  expect(output).toEqual([0, 1, 2, 3, 4])
 })
 
 it('is composable', async () => {
   const composed = compose(createNumbersGenerator, take(5), delay(10))
   const output = await consume(composed)
-  expect(output).toEqual([1, 2, 3, 4, 5])
+  expect(output).toEqual([0, 1, 2, 3, 4])
 })

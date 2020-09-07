@@ -10,7 +10,7 @@ async function* fromEvent(eventName, emitter) {
     queue.push(defer())
   })
 
-  while (true) {
+  for (;;) {
     const promise = queue[0][0]
     yield await promise
     queue.shift()

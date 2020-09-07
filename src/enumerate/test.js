@@ -13,9 +13,9 @@ it('returns current iteration count and val from generator', async () => {
   }
 
   expect(output).toEqual([
-    [0, 2],
-    [1, 4],
-    [2, 6],
+    [0, 0],
+    [1, 2],
+    [2, 4],
   ])
 })
 
@@ -33,8 +33,8 @@ it('is composable', async () => {
   }
 
   expect(output).toEqual([
-    [0, 2],
-    [1, 4],
-    [2, 6],
+    [0, 0],
+    [1, 2],
+    [2, 4],
   ])
 })

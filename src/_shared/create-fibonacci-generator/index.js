@@ -2,7 +2,7 @@ function* createFibonacciGenerator() {
   let a = 0
   let b = 1
 
-  while (true) {
+  for (;;) {
     yield b
     let temporary = a
     a = b

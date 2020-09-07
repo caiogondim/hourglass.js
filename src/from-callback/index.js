@@ -10,7 +10,7 @@ function fromCallback() {
   }
 
   async function* generator() {
-    while (true) {
+    for (;;) {
       const promise = queue[0][0]
       yield await promise
       queue.shift()

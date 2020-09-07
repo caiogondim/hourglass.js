@@ -19,7 +19,7 @@ it('works as a pass-through higher-order generators in case time between generat
     output.push(value)
   }
 
-  expect(output).toEqual([1, 2, 3, 4, 5])
+  expect(output).toEqual([0, 1, 2, 3, 4])
 })
 
 it('executes callback after X ms from last generated value by generator', async () => {
@@ -54,5 +54,5 @@ it('inserts returned value from callback into generator', async () => {
     output.push(value)
   }
 
-  expect(output).toEqual([1, idle, 2, idle, 3, idle, 4, idle, 5])
+  expect(output).toEqual([0, idle, 1, idle, 2, idle, 3, idle, 4])
 })

@@ -9,7 +9,7 @@ async function* range(begin, end, gen) {
     throw new TypeError('end must be an integer number')
   }
 
-  if(begin > end) {
+  if (begin > end) {
     throw new RangeError('end must be greater than begin')
   }
 

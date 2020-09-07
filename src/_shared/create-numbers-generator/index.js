@@ -1,6 +1,6 @@
 function* createNumbersGenerator() {
-  let x = 1
-  while (true) {
+  let x = 0
+  for (;;) {
     yield x
     x += 1
   }
