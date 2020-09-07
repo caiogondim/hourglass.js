@@ -87,3 +87,14 @@ it('works with a generator slower than consumer', async () => {
 
   expect(output).toEqual([1, 2])
 })
+
+it('throws TypeError if emitter does not implement EventTarget interface', async () => {
+  await expect(fromEvent('foo', {}).next()).rejects.toThrow(TypeError)
+  await expect(fromEvent('foo', null).next()).rejects.toThrow(TypeError)
+  await expect(fromEvent('foo', 1).next()).rejects.toThrow(TypeError)
+
+  expect(fromEvent('foo', { on() {} }).next()).toBeInstanceOf(Promise)
+  expect(fromEvent('foo', { addEventListener() {} }).next()).toBeInstanceOf(
+    Promise
+  )
+})
