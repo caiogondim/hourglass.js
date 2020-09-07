@@ -19,7 +19,7 @@ it('returns false for non-iterable objects', () => {
   expect(isIterable(1)).toBe(false)
   expect(isIterable({})).toBe(false)
   expect(isIterable(null)).toBe(false)
-  expect(isIterable(undefined)).toBe(false)
+  expect(isIterable()).toBe(false)
   expect(isIterable(false)).toBe(false)
   expect(isIterable(true)).toBe(false)
 })

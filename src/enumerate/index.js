@@ -1,7 +1,7 @@
 async function* enumerate(gen) {
   let count = 0
-  for await (let val of gen) {
-    yield [count, val]
+  for await (let value of gen) {
+    yield [count, value]
     count += 1
   }
 }

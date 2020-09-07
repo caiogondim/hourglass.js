@@ -1,8 +1,8 @@
 const isIterable = require('../_shared/is-iterable')
 
 async function* flatMap(mapper, gen) {
-  for await (let val of gen) {
-    let output = await mapper(val)
+  for await (let value of gen) {
+    let output = await mapper(value)
     if (!isIterable(output)) {
       output = [output]
     }

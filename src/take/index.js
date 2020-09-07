@@ -1,8 +1,8 @@
 async function* take(n, gen) {
   let count = 0
-  for await (let val of gen) {
+  for await (let value of gen) {
     if (count >= n) return
-    yield val
+    yield value
     count += 1
   }
 }

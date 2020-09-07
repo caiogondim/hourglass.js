@@ -1,6 +1,6 @@
 async function* map(mapper, gen) {
-  for await (let val of gen) {
-    yield await mapper(val)
+  for await (let value of gen) {
+    yield await mapper(value)
   }
 }
 

@@ -4,9 +4,9 @@ function* createFibonacciGenerator() {
 
   while (true) {
     yield b
-    let tmp = a
+    let temporary = a
     a = b
-    b = tmp + b
+    b = temporary + b
   }
 }
 

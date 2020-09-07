@@ -5,10 +5,9 @@ const consume = require('../consume')
 const createNumbersGenerator = require('../_shared/create-numbers-generator')
 
 it('filters values from generator passed as argument', async () => {
-  const oddNumberGenerator = compose(
-    createNumbersGenerator,
-    take(10),
-    filter((n) => Boolean(n % 2))
+  const oddNumberGenerator = filter(
+    (n) => Boolean(n % 2),
+    take(10, createNumbersGenerator())
   )
   const output = await consume(oddNumberGenerator)
 

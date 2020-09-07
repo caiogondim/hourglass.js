@@ -1,5 +1,5 @@
 const sleep = require('../sleep')
-const queued = require('./')
+const queued = require('.')
 
 function createAsyncCounter() {
   let count = 0
@@ -62,7 +62,7 @@ it('throws an error if argument is not a function', async () => {
 it('doesnt catch errors throwed by decorated function', async () => {
   async function throwAsyncError() {
     await sleep(100)
-    throw new Error()
+    throw new Error('foo')
   }
   const queuedThrowAsyncError = queued(throwAsyncError)
   await expect(queuedThrowAsyncError()).rejects.toThrow(Error)

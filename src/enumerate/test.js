@@ -8,8 +8,8 @@ it('returns current iteration count and val from generator', async () => {
   const gen = take(3, enumerate(map((n) => n * 2, createNumbersGenerator())))
   const output = []
 
-  for await (let [i, val] of gen) {
-    output.push([i, val])
+  for await (let [i, value] of gen) {
+    output.push([i, value])
   }
 
   expect(output).toEqual([
@@ -28,8 +28,8 @@ it('is composable', async () => {
   )
   const output = []
 
-  for await (let [i, val] of gen) {
-    output.push([i, val])
+  for await (let [i, value] of gen) {
+    output.push([i, value])
   }
 
   expect(output).toEqual([

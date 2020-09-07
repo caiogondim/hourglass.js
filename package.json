@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "npm run lint && npm run jest",
     "jest": "jest",
     "fmt": "prettier --write 'src/**/*.js'",
-    "lint": "eslint --ext '.js' --report-unused-disable-directives .",
+    "lint": "eslint --fix --ext '.js' --report-unused-disable-directives .",
     "type-check": "tsc --p './tsconfig.json'"
   },
   "repository": {
@@ -16,13 +16,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/caiogondim/hourglass.js/issues"
   },
   "homepage": "https://github.com/caiogondim/hourglass.js#readme",
   "devDependencies": {
     "eslint": "^7.8.1",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-unicorn": "^21.0.0",
     "esm": "^3.2.25",
     "jest": "^26.2.2",
     "prettier": "^2.0.5",

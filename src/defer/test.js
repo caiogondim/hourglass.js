@@ -1,4 +1,4 @@
-const defer = require('./')
+const defer = require('.')
 
 it('returns a promise and a resolve function that resolves the returned promise', async () => {
   const [promise, resolve] = defer()

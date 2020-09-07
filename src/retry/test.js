@@ -10,7 +10,7 @@ function createThrowUntilN(n) {
   return async () => {
     callCount += 1
     if (callCount < n) {
-      throw new Error()
+      throw new Error('error')
     } else {
       return 'lorem'
     }
@@ -41,12 +41,13 @@ it('retries up to `maxAttempts`', async () => {
 })
 
 it('retries in case `shouldRetry` returns true', async () => {
+  // eslint-disable-next-line  unicorn/consistent-function-scoping
   function createNumberGenerator() {
-    let num = 0
+    let number = 0
     return async () => {
-      num += 1
+      number += 1
       await sleep(100)
-      return num
+      return number
     }
   }
   const numberGenerator = createNumberGenerator()
@@ -55,8 +56,9 @@ it('retries in case `shouldRetry` returns true', async () => {
    * @param {number} num
    * @returns {boolean}
    */
-  function shouldRetry(num) {
-    return num < 2
+  // eslint-disable-next-line  unicorn/consistent-function-scoping
+  function shouldRetry(number) {
+    return number < 2
   }
 
   await expect(retry(numberGenerator, { shouldRetry })).resolves.toBe(2)
@@ -76,9 +78,12 @@ it('executes `onRetry` on each retry', async () => {
 it('backs off between each retry', async () => {
   const maxAttempts = 3
   const throwUntil3 = createThrowUntilN(3)
+
+  // eslint-disable-next-line  unicorn/consistent-function-scoping
   async function backoff() {
     await sleep(100)
   }
+
   const before = Date.now()
   await retry(throwUntil3, { maxAttempts, backoff })
   const delta = Date.now() - before

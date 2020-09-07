@@ -3,22 +3,26 @@ const compose = require('../compose')
 const take = require('../take')
 const fromCallback = require('.')
 
+function createGenerate(input, callback) {
+  return async function generate() {
+    for (let value of input) {
+      await sleep(1)
+      callback(value)
+    }
+  }
+}
+
 it('returns a generator and callback that generates on generator every value passed as arguments', async () => {
   const input = [1, 2, 3, 4, 5, 6]
   const output = []
   const [gen, callback] = fromCallback()
 
-  async function generate() {
-    for (let val of input) {
-      await sleep(1)
-      callback(val)
-    }
-  }
+  const generate = createGenerate(input, callback)
 
   async function consume() {
     const composed = compose(gen, take(5))
-    for await (let val of composed) {
-      output.push(val)
+    for await (let value of composed) {
+      output.push(value)
     }
   }
 
@@ -32,18 +36,13 @@ it('works with a generator faster than consumer', async () => {
   const output = []
   const [gen, callback] = fromCallback()
 
-  async function generate() {
-    for (let val of input) {
-      await sleep(1)
-      callback(val)
-    }
-  }
+  const generate = createGenerate(input, callback)
 
   async function consume() {
     const composed = compose(gen, take(5))
-    for await (let val of composed) {
+    for await (let value of composed) {
       await sleep(2)
-      output.push(val)
+      output.push(value)
     }
   }
 
@@ -58,17 +57,17 @@ it('works with a generator slower than consumer', async () => {
   const [gen, callback] = fromCallback()
 
   async function generate() {
-    for (let val of input) {
+    for (let value of input) {
       await sleep(2)
-      callback(val)
+      callback(value)
     }
   }
 
   async function consume() {
     const composed = compose(gen, take(5))
-    for await (let val of composed) {
+    for await (let value of composed) {
       await sleep(1)
-      output.push(val)
+      output.push(value)
     }
   }
 

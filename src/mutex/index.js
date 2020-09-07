@@ -10,6 +10,7 @@ class Mutex {
 
   async lock() {
     return new Promise((resolve) => {
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       function unlock() {
         if (this._queue.length > 0) {
           const thunk = this._queue.shift()

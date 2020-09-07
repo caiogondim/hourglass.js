@@ -7,13 +7,13 @@ function queued(fn) {
 
   const promiseQueue = []
 
-  return async function (...args) {
+  return async function (...arguments_) {
     const [promise, resolve, reject] = defer()
-    promiseQueue.push({ promise, resolve, reject, args })
+    promiseQueue.push({ promise, resolve, reject, args: arguments_ })
     if (promiseQueue.length === 1) {
       try {
-        const args = promiseQueue[0].args
-        const output = await fn(...args)
+        const arguments_ = promiseQueue[0].args
+        const output = await fn(...arguments_)
         promiseQueue.shift()
         resolve(output)
       } catch (error) {
@@ -23,8 +23,8 @@ function queued(fn) {
     } else {
       promiseQueue[promiseQueue.length - 2].promise.then(async () => {
         try {
-          const args = promiseQueue[0].args
-          const output = await fn(...args)
+          const arguments_ = promiseQueue[0].args
+          const output = await fn(...arguments_)
           promiseQueue.shift()
           resolve(output)
         } catch (error) {

@@ -4,9 +4,9 @@ async function* fromEvent(eventName, emitter) {
   let queue = [defer()]
 
   // $TODO: support addEventListener APi
-  emitter.on(eventName, (...args) => {
+  emitter.on(eventName, (...arguments_) => {
     const [, resolve] = queue[queue.length - 1]
-    resolve(...args)
+    resolve(...arguments_)
     queue.push(defer())
   })
 

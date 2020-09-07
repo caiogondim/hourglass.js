@@ -1,8 +1,8 @@
 async function* onIdle(ms, callback, gen) {
-  let timeout = null
-  let callbackReturn = undefined
+  let timeout
+  let callbackReturn
 
-  for await (let val of gen) {
+  for await (let value of gen) {
     if (callbackReturn !== undefined) {
       yield callbackReturn
       callbackReturn = undefined
@@ -13,7 +13,7 @@ async function* onIdle(ms, callback, gen) {
       callbackReturn = await callback()
     }, ms)
 
-    yield val
+    yield value
   }
 }
 

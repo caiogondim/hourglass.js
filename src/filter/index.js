@@ -1,7 +1,7 @@
 async function* filter(predicate, gen) {
-  for await (let val of gen) {
-    if (!predicate(val)) continue
-    yield val
+  for await (let value of gen) {
+    if (!predicate(value)) continue
+    yield value
   }
 }
 

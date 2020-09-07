@@ -7,8 +7,7 @@ function validateGenerators(...gens) {
     throw new TypeError('Must have at least 2 generators')
   }
 
-  for (let i = 0; i < gens.length; i += 1) {
-    const gen = gens[i]
+  for (const [i, gen] of gens.entries()) {
     if (i === 0) {
       if (
         !isAsyncGeneratorFunction(gen) &&
@@ -35,12 +34,12 @@ async function* compose(...gens) {
   // Transforms foo -> bar -> qux into qux(bar(foo()))
   let composed = isGenerator(gens[0]) ? gens[0] : gens[0]()
   for (let i = 1; i < gens.length; i += 1) {
-    const curGen = gens[i]
-    composed = curGen(composed)
+    const currentGen = gens[i]
+    composed = currentGen(composed)
   }
 
-  for await (let val of composed) {
-    yield val
+  for await (let value of composed) {
+    yield value
   }
 }
 

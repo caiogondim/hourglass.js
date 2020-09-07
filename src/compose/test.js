@@ -1,4 +1,4 @@
-const compose = require('./')
+const compose = require('.')
 const map = require('../map')
 const take = require('../take')
 const delay = require('../delay')

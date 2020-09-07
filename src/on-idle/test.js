@@ -15,8 +15,8 @@ it('works as a pass-through higher-order generators in case time between generat
     onIdle(10, () => idle)
   )
 
-  for await (let val of composed) {
-    output.push(val)
+  for await (let value of composed) {
+    output.push(value)
   }
 
   expect(output).toEqual([1, 2, 3, 4, 5])
@@ -35,7 +35,7 @@ it('executes callback after X ms from last generated value by generator', async 
 
   // $TODO: change for `await consume(composed)`
   // eslint-disable-next-line no-unused-vars, no-empty
-  for await (let val of composed) {
+  for await (let value of composed) {
   }
 
   expect(wasCallbackExecuted).toBe(true)
@@ -50,8 +50,8 @@ it('inserts returned value from callback into generator', async () => {
     onIdle(10, () => idle)
   )
 
-  for await (let val of composed) {
-    output.push(val)
+  for await (let value of composed) {
+    output.push(value)
   }
 
   expect(output).toEqual([1, idle, 2, idle, 3, idle, 4, idle, 5])

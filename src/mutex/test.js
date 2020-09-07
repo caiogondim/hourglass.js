@@ -1,4 +1,4 @@
-const Mutex = require('./')
+const Mutex = require('.')
 
 it('asd', async () => {
   class Counter {

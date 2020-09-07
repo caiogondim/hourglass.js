@@ -1,9 +1,9 @@
 const sleep = require('../sleep')
 
 async function* delay(ms, gen) {
-  for await (let val of gen) {
+  for await (let value of gen) {
     await sleep(ms)
-    yield val
+    yield value
   }
 }
 

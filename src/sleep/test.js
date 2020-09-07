@@ -1,4 +1,4 @@
-const sleep = require('./index')
+const sleep = require('.')
 
 it('returns a promise that is resolved after X miliseconds', async () => {
   const before = Date.now()

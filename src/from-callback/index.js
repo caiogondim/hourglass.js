@@ -3,9 +3,9 @@ const defer = require('../defer')
 function fromCallback() {
   const queue = [defer()]
 
-  function callback(val) {
+  function callback(value) {
     const [, resolve] = queue[queue.length - 1]
-    resolve(val)
+    resolve(value)
     queue.push(defer())
   }
 

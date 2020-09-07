@@ -1,8 +1,8 @@
-function isIterable(obj) {
-  if (!obj) {
+function isIterable(object) {
+  if (!object) {
     return false
   }
-  return typeof obj[Symbol.iterator] === 'function'
+  return typeof object[Symbol.iterator] === 'function'
 }
 
 module.exports = isIterable

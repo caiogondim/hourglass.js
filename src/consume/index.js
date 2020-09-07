@@ -1,7 +1,7 @@
 async function consume(gen) {
   const output = []
-  for await (let val of gen) {
-    output.push(val)
+  for await (let value of gen) {
+    output.push(value)
   }
   return output
 }

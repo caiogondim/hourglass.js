@@ -1,7 +1,7 @@
 function toAsyncGenerator(genFn) {
   return async function* () {
-    for (let val of genFn()) {
-      yield val
+    for (let value of genFn()) {
+      yield value
     }
   }
 }

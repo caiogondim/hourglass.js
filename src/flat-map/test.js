@@ -8,10 +8,10 @@ it('flats generated value if it is an array', async () => {
   const composed = compose(
     createNumbersGenerator,
     take(2),
-    flatMap((n) => [n + 100, n + 101, n + 102])
+    flatMap((n) => [n, n + 1, n + 2])
   )
   const output = await consume(composed)
-  expect(output).toEqual([101, 102, 103, 102, 103, 104])
+  expect(output).toEqual([1, 2, 3, 2, 3, 4])
 })
 
 it('flats generated value if it is an iterable', async () => {
@@ -28,10 +28,10 @@ it('works as map in case generated value is not an iterable', async () => {
   const composed = compose(
     createNumbersGenerator,
     take(5),
-    flatMap((n) => n * 2)
+    flatMap((n) => n * 3)
   )
   const output = await consume(composed)
-  expect(output).toEqual([2, 4, 6, 8, 10])
+  expect(output).toEqual([3, 6, 9, 12, 15])
 })
 
 it('is composable', async () => {

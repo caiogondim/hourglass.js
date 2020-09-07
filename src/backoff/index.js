@@ -7,10 +7,10 @@ const sleep = require('../sleep')
  * @returns {function(): Promise<void>}
  */
 function createBackoff({ max = 30000, initial = 1000 } = {}) {
-  let cur = initial
+  let current = initial
   return async () => {
-    await sleep(cur)
-    cur = Math.min(cur * 2, max)
+    await sleep(current)
+    current = Math.min(current * 2, max)
   }
 }
 

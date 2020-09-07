@@ -3,24 +3,23 @@ const fromEvent = require('.')
 const take = require('../take')
 const sleep = require('../sleep')
 const compose = require('../compose')
+const consume = require('../consume')
 
 class MyEmitter extends EventEmitter {}
 const emitter = new MyEmitter()
 
+async function emitEvents() {
+  emitter.emit('foo', 1)
+  emitter.emit('foo', 2)
+  emitter.emit('foo', 3)
+}
+
 it('returns a generator that generates a new value for every listened event', async () => {
   const gen = take(2, fromEvent('foo', emitter))
-  const output = []
-
-  async function emitEvents() {
-    emitter.emit('foo', 1)
-    emitter.emit('foo', 2)
-    emitter.emit('foo', 3)
-  }
+  let output = []
 
   async function consumeEvents() {
-    for await (let event of gen) {
-      output.push(event)
-    }
+    output = await consume(gen)
   }
 
   await Promise.all([consumeEvents(), emitEvents()])
@@ -30,18 +29,10 @@ it('returns a generator that generates a new value for every listened event', as
 
 it('is composable', async () => {
   const gen = compose(fromEvent('foo', emitter), take(2))
-  const output = []
-
-  async function emitEvents() {
-    emitter.emit('foo', 1)
-    emitter.emit('foo', 2)
-    emitter.emit('foo', 3)
-  }
+  let output = []
 
   async function consumeEvents() {
-    for await (let event of gen) {
-      output.push(event)
-    }
+    output = await consume(gen)
   }
 
   await Promise.all([consumeEvents(), emitEvents()])
