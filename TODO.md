@@ -1,6 +1,7 @@
 # Today
 - rename: create-number-generator -> create-async-number-generator
 - eslint
+- speed up tests
 
 # Someday
 - Add toBeNear Jest matcher
