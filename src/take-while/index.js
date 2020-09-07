@@ -5,7 +5,6 @@ async function* takeWhile(predicate, gen) {
     } else {
       break
     }
-    
   }
 }
 
@@ -16,7 +15,7 @@ function composable(predicate) {
 }
 
 function main(predicate, gen) {
-  if(!gen) {
+  if (!gen) {
     return composable(predicate)
   } else {
     return takeWhile(predicate, gen)

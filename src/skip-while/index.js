@@ -14,7 +14,7 @@ function composable(predicate) {
 }
 
 function main(predicate, gen) {
-  if(!gen) {
+  if (!gen) {
     return composable(predicate)
   } else {
     return skipWhile(predicate, gen)
