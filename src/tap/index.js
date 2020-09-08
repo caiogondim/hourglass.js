@@ -1,6 +1,6 @@
 async function* tap(callback, gen) {
   for await (let value of gen) {
-    callback()
+    callback(value)
     yield value
   }
 }
