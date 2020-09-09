@@ -4,7 +4,6 @@ const compose = require('../compose')
 const createNumbersGenerator = require('../_shared/create-numbers-generator')
 const consume = require('../consume')
 const skip = require('../skip')
-const map = require('../map')
 
 it('reads values from generators passed as arguments in a round-robin fashion', async () => {
   const evensGenerator = compose(createNumbersGenerator(), take(5))

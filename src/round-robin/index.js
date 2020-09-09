@@ -1,16 +1,16 @@
 function roundRobin(...gens) {
   let i = 0
-  let curGen = gens[0]
+  let currentGen = gens[0]
 
   return {
     [Symbol.asyncIterator]() {
       return this
     },
     async next() {
-      while (true) {
-        const generatorOutput = await curGen[Symbol.asyncIterator]().next()
+      for(;;) {
+        const generatorOutput = await currentGen[Symbol.asyncIterator]().next()
         if (generatorOutput.done) {
-          gens = gens.filter((gen) => gen !== curGen)
+          gens = gens.filter((gen) => gen !== currentGen)
         }
 
         if (gens.length <= 0) {
@@ -20,7 +20,7 @@ function roundRobin(...gens) {
         }
 
         i = (i + 1) % gens.length
-        curGen = gens[i]
+        currentGen = gens[i]
 
         if (generatorOutput.done) {
           continue
