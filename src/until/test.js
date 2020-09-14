@@ -14,7 +14,7 @@ it('throws an error if argument date is in the past', async () => {
   expect(() => until(new Date('December 21, 2025'))).not.toThrow(RangeError)
 })
 
-it('resolves after', async () => {
+it('resolves on the date passed as argument', async () => {
   const date1 = new Date(Date.now())
   const date2 = new Date(date1.getTime() + 1000)
   await until(date2)
