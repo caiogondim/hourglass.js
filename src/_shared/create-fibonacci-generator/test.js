@@ -1,6 +1,6 @@
 const createFibonacciGenerator = require('.')
-const compose = require('../../compose')
-const take = require('../../take')
+const compose = require('../../generators/compose')
+const take = require('../../generators/take')
 
 it('creates a generators that generates the fibonacci sequence', async () => {
   const composed = compose(createFibonacciGenerator, take(10))

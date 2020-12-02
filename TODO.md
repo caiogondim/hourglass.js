@@ -1,9 +1,15 @@
 # Today
+
+- jest in series
+- remove composable interface
+- yarn workspace
+- lerna?
 - rename: create-number-generator -> create-async-number-generator
 - eslint
-- speed up tests
+- speed up tests (reduce timers)
 
 # Someday
+
 - Add toBeNear Jest matcher
   - https://github.com/jest-community/jest-extended/pull/183
   - use on backoff test
