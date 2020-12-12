@@ -1,0 +1,7 @@
+{
+  "name": "@hourglass/skip",
+  "version": "0.0.1",
+  "dependencies": {
+    "@hourglass/enumerate": "0.0.1"
+  }
+}

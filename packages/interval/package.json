@@ -1,0 +1,7 @@
+{
+  "name": "@hourglass/interval",
+  "version": "0.0.1",
+  "dependencies": {
+    "@hourglass/sleep": "0.0.1"
+  }
+}

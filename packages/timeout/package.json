@@ -1,0 +1,8 @@
+{
+  "name": "@hourglass/timeout",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@hourglass/sleep": "0.0.1",
+    "@hourglass/is-promise": "0.0.1"
+  }
+}

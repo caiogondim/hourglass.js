@@ -1,0 +1,7 @@
+{
+  "name": "@hourglass/flat-map",
+  "version": "0.0.1",
+  "dependencies": {
+    "@hourglass/is-iterable": "0.0.1"
+  }
+}

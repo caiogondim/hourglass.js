@@ -7,6 +7,7 @@
 - rename: create-number-generator -> create-async-number-generator
 - eslint
 - speed up tests (reduce timers)
+- publish only src files, not test files
 
 # Someday
 

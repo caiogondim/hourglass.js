@@ -1,0 +1,7 @@
+{
+  "name": "@hourglass/retry",
+  "version": "0.0.1",
+  "dependencies": {
+    "@hourglass/backoff": "0.0.1"
+  }
+}
