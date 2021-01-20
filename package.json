@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint && npm run jest",
     "jest": "jest",
-    "fmt": "prettier --write 'src/**/*.js'",
+    "fmt": "prettier --write 'packages/**/*.js'",
     "lint": "eslint --fix --ext '.js' --report-unused-disable-directives .",
     "type-check": "tsc --p './tsconfig.json'"
   },
