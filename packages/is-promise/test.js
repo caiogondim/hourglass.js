@@ -1,4 +1,4 @@
-const isPromise = require('.')
+import { isPromise } from '.'
 
 it('returns true if argument is a promise', () => {
   expect(isPromise(Promise.resolve())).toBe(true)
@@ -13,6 +13,7 @@ it('returns false if argument is not a promise', () => {
   expect(isPromise(-42)).toBe(false)
   expect(isPromise('')).toBe(false)
   expect(isPromise('then')).toBe(false)
+  // eslint-disable-next-line unicorn/no-thenable
   expect(isPromise({ then: true })).toBe(false)
   expect(isPromise([true])).toBe(false)
 })

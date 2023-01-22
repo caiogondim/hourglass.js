@@ -1,20 +1,31 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true,
-        "jest": true
-    },
-    "plugins": [
-        "unicorn",
-        "sonarjs"
-    ],
-    "extends": ["eslint:recommended", "plugin:unicorn/recommended", "plugin:sonarjs/recommended"],
-    "parserOptions": {
-        "ecmaVersion": 12
-    },
-    "rules": {
-        "unicorn/no-null": "off",
-        "sonarjs/prefer-while": "off"
-    }
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "plugins": ["unicorn", "sonarjs", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:unicorn/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:import/recommended",
+    "plugin:json/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "rules": {
+    "sort-keys": ["error", "asc"],
+    "unicorn/no-null": "off",
+    "unicorn/prefer-module": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "sonarjs/prefer-while": "off",
+    "import/no-default-export": 2,
+    "import/no-nodejs-modules": 2,
+    "import/first": 2,
+    "import/order": 2,
+    "import/group-exports": 2,
+    "import/no-duplicates": 2
+  }
 }

@@ -10,4 +10,4 @@ function* createFibonacciGenerator() {
   }
 }
 
-module.exports = createFibonacciGenerator
+module.exports = {createFibonacciGenerator}

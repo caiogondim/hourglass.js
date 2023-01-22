@@ -1,6 +1,13 @@
-const enumerate = require('@hourglass/enumerate')
+import { enumerate } from '../enumerate'
 
-async function* range(begin, end, gen) {
+/**
+ * @template T
+ * @param {number} begin
+ * @param {number} end
+ * @param {AsyncIterable<T>} iterable
+ * @yield {T}
+ */
+async function* range(begin, end, iterable) {
   if (!Number.isInteger(begin)) {
     throw new TypeError('begin must be an integer number')
   }
@@ -13,15 +20,17 @@ async function* range(begin, end, gen) {
     throw new RangeError('end must be greater than begin')
   }
 
-  for await (let [index, value] of enumerate(gen)) {
+  for await (let [index, value] of enumerate(iterable)) {
     if (index < begin) {
       continue
     }
+
     if (index >= end) {
       return
     }
+
     yield value
   }
 }
 
-module.exports = range
+export { range }

@@ -1,6 +1,15 @@
-const range = require('.')
-const consume = require('../consume')
-const createNumbersGenerator = require('../../shared/create-numbers-generator')
+import { consume } from '../consume'
+import { range } from '.'
+
+async function* createNumbersGenerator() {
+  const nextTick = Promise.resolve()
+  let index = 0
+  for (;;) {
+    yield index
+    index += 1
+    await nextTick
+  }
+}
 
 it('skip all nth values smaller than `begin` and ends the generator when n is greater than `end`', async () => {
   const output = await consume(range(5, 10, createNumbersGenerator()))

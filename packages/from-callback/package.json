@@ -1,7 +1,0 @@
-{
-  "name": "@hourglass/from-callback",
-  "version": "0.0.1",
-  "dependencies": {
-    "@hourglass/defer": "0.0.1"
-  }
-}

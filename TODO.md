@@ -1,24 +1,73 @@
 # Today
-
-- jest in series
-- remove composable interface
-- yarn workspace
-- lerna?
-- rename: create-number-generator -> create-async-number-generator
-- eslint
-- speed up tests (reduce timers)
-- publish only src files, not test files
+- implement zip
+- implement unzip
+- code editor file (.editor ?)
+- refactor `createNumbersGenerator` to `const numbers = generateNumbers()`
+- always import with full path (no implicit index)
 
 # Someday
-
+- migrate pipeline
+- speed up tests (reduce timers)
+- eslint
+- rename: create-number-generator -> create-async-number-generator
+- yarn workspace
+  - lerna?
+- Table of Contents on README
+- Use mermaid.js diagrams on README
+- use fake timers on tests
+- deploy to npm from github CI
+- merge
+  - merges two iterables
+  - merges in ascending order
+- chunks()
+  - for (const chunk of chunks(foo, 6))
+  - get by chunks
+  - return an array
 - Add toBeNear Jest matcher
   - https://github.com/jest-community/jest-extended/pull/183
   - use on backoff test
   - use on sleep test
 - rename generatedValues to output
-- ?export { composable } from generators for better use with compose
-- create async and sync versions of generators
-  - default is async `import map from 'hourglass/map`
-  - create a sync.js file to be imported as `import map from 'hourglass/map/sync'`
-- refactor parameters order
-  - generators should be moved to last parameter so ir can be ommited while using with compose
+- use latest yarn
+- obj[Symbol.asyncIterator]
+  - obj implements Symbol.asyncIterator
+  - a function generates values async
+  - const { asyncIterator, generate }
+- token bucket algo
+  - throws exception if bucket overflows
+  - bucket has tokens
+  - each requests consumes a token
+  - refiller puts token eevery N ms
+  - if no tokens on bucket, throw exception
+- leaking bucket algo
+  -
+- implement zip/unzip
+- create WebStream section
+  - on nodejs it should use WebStream
+  - on the browser it uses WebStream
+    - browser compatibility could be a follow up feature
+- implement "time-window"
+  - similar to https://rxjs.dev/api/operators/windowTime
+  - every N seconds, release the group
+- implement min/max
+  - consumes whole generator and return min/max
+- pairwise
+  - https://rxjs.dev/api/operators/pairwise
+- timestamp
+  - https://rxjs.dev/api/operators/timestamp
+- publish only src files, not test files
+- Migrate from jest to node test runner
+  - node --test
+  - https://nodejs.org/api/test.html
+  - use fake timers https://github.com/sinonjs/fake-timers
+- debounce
+  - use TS for debounce
+  - always return a promise
+  - returned promise might fail
+- eslint number with separators
+  - 1000 -> 1_000
+
+# Done
+- exact pkg versions
+- migrate timeout
+- migrate concat

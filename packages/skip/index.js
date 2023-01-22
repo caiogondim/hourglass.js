@@ -1,27 +1,18 @@
-// TODO: remove this dep
-const enumerate = require('@hourglass/enumerate')
+import { enumerate } from '../enumerate'
 
+/**
+ * @template T
+ * @param {number} n
+ * @param {AsyncIterable<T>} gen
+ * @yields {T}
+ */
 async function* skip(n, gen) {
-  for await (let [index, value] of enumerate(gen)) {
-    if (index < n) {
+  for await (const [currentIndex, currentValue] of enumerate(gen)) {
+    if (currentIndex < n) {
       continue
     }
-    yield value
+    yield currentValue
   }
 }
 
-function composable(n) {
-  return async function* composableSkip(gen) {
-    yield* skip(n, gen)
-  }
-}
-
-function main(n, gen) {
-  if (!gen) {
-    return composable(n)
-  } else {
-    return skip(n, gen)
-  }
-}
-
-module.exports = main
+export { skip }

@@ -1,4 +1,4 @@
-const defer = require('.')
+import { defer } from '.'
 
 it('returns a promise and a resolve function that resolves the returned promise', async () => {
   const [promise, resolve] = defer()
@@ -11,7 +11,7 @@ it('returns a promise and a resolve function that resolves the returned promise'
   const countPromise = count()
   expect(counter).toBe(0)
 
-  resolve()
+  resolve(true)
   await countPromise
   expect(counter).toBe(1)
 })

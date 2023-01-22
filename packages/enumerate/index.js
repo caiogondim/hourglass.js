@@ -1,3 +1,8 @@
+/**
+ * @template T
+ * @param {AsyncIterable<T>} gen
+ * @yield {T}
+ */
 async function* enumerate(gen) {
   let count = 0
   for await (let value of gen) {
@@ -6,4 +11,4 @@ async function* enumerate(gen) {
   }
 }
 
-module.exports = enumerate
+export { enumerate }

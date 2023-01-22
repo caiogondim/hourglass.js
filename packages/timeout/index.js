@@ -1,12 +1,21 @@
-const sleep = require('@hourglass/sleep')
-const isPromise = require('@hourglass/is-promise')
+import { sleep } from '../sleep'
+import { isPromise } from '../is-promise'
 
 class TimeoutError extends Error {
+  /**
+   * @param {string} message
+   */
   constructor(message) {
     super(message)
   }
 }
 
+/**
+ * @template T
+ * @param {Promise<T>} promise
+ * @param {number} ms
+ * @return {Promise<T>}
+ */
 async function timeout(promise, ms) {
   if (!isPromise(promise)) {
     throw new TypeError('First argument must be a promise')
@@ -21,12 +30,9 @@ async function timeout(promise, ms) {
     throw new TimeoutError(`Timeout after`)
   }
 
-  const [output] = await Promise.race([promise, createTimeoutPromise()])
-
-  return output
+  return /** @type {T} */ (
+    await Promise.race([promise, createTimeoutPromise()])
+  )
 }
 
-module.exports = {
-  timeout,
-  TimeoutError,
-}
+export { timeout, TimeoutError }

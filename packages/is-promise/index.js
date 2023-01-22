@@ -1,3 +1,7 @@
+/**
+ * @param {any} x
+ * @returns {Boolean}
+ */
 function isPromise(x) {
   return (
     Boolean(x) &&
@@ -6,4 +10,4 @@ function isPromise(x) {
   )
 }
 
-module.exports = isPromise
+export { isPromise }
