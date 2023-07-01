@@ -1,0 +1,8 @@
+{
+  "name": "@hourglass/from-event",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@hourglass/defer": "0.0.1"
+  }
+}

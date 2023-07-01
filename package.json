@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest packages --coverage",
+    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
     "fmt": "prettier --write 'packages/**/*.js' 'packages/**/*.json' './*.json'",
     "lint": "eslint --ext .js,.json --report-unused-disable-directives ./packages/",
     "type-check": "tsc --p './tsconfig.json'",
@@ -27,6 +28,10 @@
     "yarn": "1.22.19"
   },
   "jest": {
-    "transform": {}
+    "transform": {},
+    "errorOnDeprecated": true,
+    "roots": [
+      "packages"
+    ]
   }
 }

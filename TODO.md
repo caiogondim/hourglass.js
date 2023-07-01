@@ -1,6 +1,16 @@
 # Today
-- implement zip
+- compose/pipe
+  - compose is right to left
+    - https://ramdajs.com/docs/#compose
+  - pipe is left to right
+    - https://ramdajs.com/docs/#pipe
+- change order of signature
+  - gen first
+  - function second
+- filter/map/... callback should accepts sync/async functions
 - implement unzip
+- implement pipeline
+- implement retry
 - code editor file (.editor ?)
 - refactor `createNumbersGenerator` to `const numbers = generateNumbers()`
 - always import with full path (no implicit index)
@@ -71,3 +81,4 @@
 - exact pkg versions
 - migrate timeout
 - migrate concat
+- implement zip

@@ -27,7 +27,7 @@ async function timeout(promise, ms) {
 
   async function createTimeoutPromise() {
     await sleep(ms)
-    throw new TimeoutError(`Timeout after`)
+    throw new TimeoutError(`Timeout after ${ms} ms`)
   }
 
   return /** @type {T} */ (

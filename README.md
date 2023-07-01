@@ -25,7 +25,7 @@
 - slowStart 🚧
     - inverted backoff
 
-### Generators
+### Iterables (Generators, Arrays, ...)
 
 - distinct 🚧
 - tee 🚧
@@ -61,10 +61,11 @@
 - sieve
 
 
-### Streams
+### Async Iterables (Streams, Web Streams, Async Generators, ...)
 
 - intoAsyncGenerator 🚧
 - distinct 🚧
+    - accepts a serializer argument
 - filter 🚧
 - map 🚧
 - reduce 🚧
