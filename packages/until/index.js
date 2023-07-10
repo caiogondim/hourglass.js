@@ -1,5 +1,4 @@
-import { sleep } from '@hourglass/sleep'
-import { defer} from '@hourglass/defer'
+import { defer } from '@hourglass/defer'
 
 class TimeoutError extends Error {}
 
@@ -11,35 +10,32 @@ class TimeoutError extends Error {}
  * @param  {number} [options.interval]
  * @return {Promise<void>}
  */
-async function until(thunk, expected, { timeout = 30_000, interval = 5000 } = {}) {
+async function until(
+  thunk,
+  expected,
+  { timeout = 10_000, interval = 1000 } = {}
+) {
+  if (timeout < 1) {
+    throw new TypeError('timeout needs to be greater than 0')
+  }
+
   const [promise, resolve, reject] = defer()
-  let wasResolved = false
   let timeoutReference = setTimeout(() => {
-    if (!wasResolved) {
-      wasResolved = true
-      reject(new TimeoutError())
-    }
+    clearTimeout(onIntervalTimeoutReference)
+    reject(new TimeoutError(`${timeout} ms have passed`))
   }, timeout)
 
-  setTimeout(async () => {
-    for (;;) {
-      if (wasResolved) {
-        break
-      }
+  const onInterval = async () => {
+    const thunkOutput = await thunk()
 
-      const thunkOutput = await thunk()
-
-      if (thunkOutput === expected) {
-        wasResolved = true
-        clearTimeout(timeoutReference)
-        resolve()
-        break
-      }
-
-      await sleep(interval)
-    }  
-  }, 0)
-  
+    if (thunkOutput === expected) {
+      clearTimeout(timeoutReference)
+      resolve()
+    } else {
+      onIntervalTimeoutReference = setTimeout(onInterval, interval)
+    }
+  }
+  let onIntervalTimeoutReference = setTimeout(onInterval, 0)
 
   return promise
 }

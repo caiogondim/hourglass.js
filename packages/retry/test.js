@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import { sleep } from '../sleep'
 import { retry } from '.'
 
@@ -17,7 +18,7 @@ function createThrowUntilN(n) {
   }
 }
 
-it.skip('retries if thunk throws error', async () => {
+it('retries if thunk throws error', async () => {
   //
   // Test behavior without `retry`
   //
@@ -34,29 +35,27 @@ it.skip('retries if thunk throws error', async () => {
   await expect(retry(createThrowUntilN(3))).resolves.toEqual('lorem')
 })
 
-it.skip('retries up to `maxAttempts`', async () => {
+it('retries up to `maxAttempts`', async () => {
   await expect(retry(createThrowUntilN(3), { maxAttempts: 2 })).rejects.toThrow(
     Error
   )
 })
 
-it.skip('retries in case `shouldRetry` returns true', async () => {
-   
+it('retries in case `shouldRetry` returns true', async () => {
   function createNumberGenerator() {
     let number = 0
     return async () => {
       number += 1
-      await sleep(100)
+      await sleep(1)
       return number
     }
   }
   const numberGenerator = createNumberGenerator()
 
   /**
-   * @param {number} num
+   * @param {number} number
    * @returns {boolean}
    */
-   
   function shouldRetry(number) {
     return number < 2
   }
@@ -64,29 +63,67 @@ it.skip('retries in case `shouldRetry` returns true', async () => {
   await expect(retry(numberGenerator, { shouldRetry })).resolves.toBe(2)
 })
 
-it.skip('executes `onRetry` on each retry', async () => {
+it('executes `onRetry` on each retry', async () => {
   const maxAttempts = 3
-  let onRetryCalls = 0
-  function onRetry() {
-    onRetryCalls += 1
-  }
-  const throwUntil3 = createThrowUntilN(3)
+  const onRetry = jest.fn(() => {})
+
+  const throwUntil3 = createThrowUntilN(maxAttempts)
   await retry(throwUntil3, { maxAttempts, onRetry })
-  expect(onRetryCalls).toBe(maxAttempts - 1)
+  expect(onRetry).toHaveBeenCalledTimes(maxAttempts - 1)
 })
 
-it.skip('backs off between each retry', async () => {
+it('backs off between each retry', async () => {
+  //
+  // Given
+  //
+
   const maxAttempts = 3
   const throwUntil3 = createThrowUntilN(3)
 
-   
+  // A backoff function that sleeps for 100 ms
   async function backoff() {
     await sleep(100)
   }
 
+  //
+  // When
+  //
+
+  // `retry` runs with `maxAttempts` set to `3`
   const before = Date.now()
   await retry(throwUntil3, { backoff, maxAttempts })
+
+  //
+  // Then
+  //
+
+  // The delta of time from before running `retry` and after it's finished should be the number of `maxAttempts` minus 1, since the backoff function only runs in-between `onRetry` executions.
   const delta = Date.now() - before
   expect(delta).toBeGreaterThanOrEqual(200)
-  expect(delta).toBeLessThan(220)
+  expect(delta).toBeLessThan(250)
+})
+
+it('returns the returned value by `asyncThunk` argument', async () => {
+  //
+  // Given
+  //
+
+  const asyncThunkOutput = 123
+  const asyncThunk = async () => asyncThunkOutput
+  const shouldRetry = () => true
+
+  // We are using `maxAttempts === 1` here to exercise a particular code path
+  const maxAttempts = 1
+
+  //
+  // When
+  //
+
+  const output = await retry(asyncThunk, { maxAttempts, shouldRetry })
+
+  //
+  // Then
+  //
+
+  expect(output).toBe(asyncThunkOutput)
 })

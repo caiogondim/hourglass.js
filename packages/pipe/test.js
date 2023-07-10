@@ -13,7 +13,7 @@ async function* generateNumbers() {
   }
 }
 
-it('composes generators', async () => {
+it('composes generators from left to right', async () => {
   const piped = pipe(
     (x) => map((y) => y * y, x),
     (x) => map((y) => y * 2, x),

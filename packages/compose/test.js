@@ -7,7 +7,6 @@ async function* generateNumbers() {
   let currentNumber = 0
   const nextTick = Promise.resolve()
   for (;;) {
-    console.log({ currentNumber })
     await nextTick
     yield currentNumber
     currentNumber += 1
