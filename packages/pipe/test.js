@@ -15,8 +15,8 @@ async function* generateNumbers() {
 
 it('composes generators from left to right', async () => {
   const piped = pipe(
-    (x) => map((y) => y * y, x),
-    (x) => map((y) => y * 2, x),
+    (x) => map((y) => Promise.resolve(y * y), x),
+    (x) => map((y) => Promise.resolve(y * 2), x),
     (x) => take(5, x)
   )
 

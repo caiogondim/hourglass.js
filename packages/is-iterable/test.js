@@ -18,7 +18,6 @@ it('returns false for non-iterable objects', () => {
   expect(isIterable(0)).toBe(false)
   expect(isIterable(1)).toBe(false)
   expect(isIterable({})).toBe(false)
-  // @ts-expect-error
   expect(isIterable(null)).toBe(false)
   // @ts-expect-error
   expect(isIterable()).toBe(false)
