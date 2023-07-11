@@ -1,6 +1,6 @@
 /**
  * @param {any} x
- * @returns {Boolean}
+ * @returns {boolean}
  */
 function isPromise(x) {
   return (

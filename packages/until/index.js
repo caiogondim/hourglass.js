@@ -30,7 +30,7 @@ async function until(
 
     if (thunkOutput === expected) {
       clearTimeout(timeoutReference)
-      resolve()
+      resolve(undefined)
     } else {
       onIntervalTimeoutReference = setTimeout(onInterval, interval)
     }

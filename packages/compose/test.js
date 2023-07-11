@@ -16,8 +16,8 @@ async function* generateNumbers() {
 it('composes generators', async () => {
   const composed = compose(
     (x) => take(5, x),
-    (x) => map((y) => y * y, x),
-    (x) => map((y) => y * 2, x)
+    (x) => map((y) => Promise.resolve(y * y), x),
+    (x) => map((y) => Promise.resolve(y * 2), x)
   )
 
   const output = await consume(composed(generateNumbers()))

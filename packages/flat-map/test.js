@@ -15,7 +15,7 @@ async function* createNumbersGenerator() {
 
 it('flats generated value if it is an array', async () => {
   const composed = flatMap(
-    (n) => [n, n + 1, n + 2],
+    (n) => Promise.resolve([n, n + 1, n + 2]),
     take(2, createNumbersGenerator())
   )
   const output = await consume(composed)
@@ -24,7 +24,7 @@ it('flats generated value if it is an array', async () => {
 
 it('flats generated value if it is an iterable', async () => {
   const composed = flatMap(
-    (n) => new Set([n + 100, n + 101, n + 102]),
+    (n) => Promise.resolve(new Set([n + 100, n + 101, n + 102])),
     take(2, createNumbersGenerator())
   )
   const output = await consume(composed)

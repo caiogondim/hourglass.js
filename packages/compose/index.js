@@ -1,4 +1,13 @@
+/**
+ * @template T
+ * @param {...(arg0: AsyncIterable<T>) => AsyncIterable<T>} gens
+ */
 function compose(...gens) {
+
+  /**
+   * @param {AsyncGenerator<T>} gen
+   * @yields {T}
+   */
   return async function* composed(gen) {
     let outerGenerator = gens[0](gen)
 

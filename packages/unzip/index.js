@@ -1,8 +1,16 @@
 // References:
 // - Rust lang: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.unzip
 
+/**
+ * @template T 
+ * @param {AsyncIterable<T>} zipped
+ * @returns {[AsyncIterable<T>, AsyncIterable<T>]}
+ */
 function unzip(zipped) {
+  /** @type {T[]} */
   const zippedQueue1 = []
+
+  /** @type {T[]} */
   const zippedQueue2 = []
 
   async function* unziped1() {

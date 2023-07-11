@@ -17,6 +17,8 @@ async function emitEvents() {
 
 it('returns a generator that generates a new value for every listened event', async () => {
   const gen = take(2, fromEvent('foo', emitter))
+
+  /** @type {number[]} */
   let output = []
 
   async function consumeEvents() {
@@ -33,6 +35,8 @@ it('works with a generator faster than consumer', async () => {
     () => fromEvent('foo', emitter),
     (x) => take(2, x)
   )
+
+  /** @type {number[]} */
   const output = []
 
   async function emitEvents() {
@@ -60,6 +64,8 @@ it('works with a generator slower than consumer', async () => {
     () => fromEvent('foo', emitter),
     (x) => take(2, x)
   )
+
+  /** @type {number[]} */
   const output = []
 
   async function emitEvents() {
