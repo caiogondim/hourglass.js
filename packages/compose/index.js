@@ -3,7 +3,6 @@
  * @param {...(arg0: AsyncIterable<T>) => AsyncIterable<T>} gens
  */
 function compose(...gens) {
-
   /**
    * @param {AsyncGenerator<T>} gen
    * @yields {T}

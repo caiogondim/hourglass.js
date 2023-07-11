@@ -1,7 +1,7 @@
 // TODO: pass index
 
 /**
- * @template T 
+ * @template T
  * @param {AsyncIterable<T>} gen
  * @param {(accumulator: T, value: T) => Promise<T>} reducer
  * @param {T} initialValue

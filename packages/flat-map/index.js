@@ -9,11 +9,11 @@ import { isIterable } from '@hourglass/is-iterable'
 async function* flatMap(mapper, gen) {
   for await (let value of gen) {
     /** @type {Awaited<T> | Awaited<T>[]} */
-    let output = await mapper(value)
-    if (!isIterable(output)) {
-      output = [output]
+    let mapperOutput = await mapper(value)
+    if (!isIterable(mapperOutput)) {
+      mapperOutput = [mapperOutput]
     }
-    for (let outputItem of output) {
+    for (let outputItem of mapperOutput) {
       yield outputItem
     }
   }

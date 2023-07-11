@@ -2,7 +2,7 @@
 // - Rust lang: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.unzip
 
 /**
- * @template T 
+ * @template T
  * @param {AsyncIterable<T>} zipped
  * @returns {[AsyncIterable<T>, AsyncIterable<T>]}
  */

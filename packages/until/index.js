@@ -3,17 +3,18 @@ import { defer } from '@hourglass/defer'
 class TimeoutError extends Error {}
 
 /**
- * @param  {function(): Promise<any>} thunk
- * @param  {any} expected
+ * @template T
+ * @param  {() => Promise<T>} thunk
+ * @param  {T} expected
  * @param  {Object} options
  * @param  {number} [options.timeout]
  * @param  {number} [options.interval]
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 async function until(
   thunk,
   expected,
-  { timeout = 10_000, interval = 1000 } = {}
+  { timeout = 10_000, interval = 1_000 } = {}
 ) {
   if (timeout < 1) {
     throw new TypeError('timeout needs to be greater than 0')
@@ -26,13 +27,17 @@ async function until(
   }, timeout)
 
   const onInterval = async () => {
-    const thunkOutput = await thunk()
-
-    if (thunkOutput === expected) {
+    try {
+      const thunkOutput = await thunk()
+      if (thunkOutput === expected) {
+        clearTimeout(timeoutReference)
+        resolve(undefined)
+      } else {
+        onIntervalTimeoutReference = setTimeout(onInterval, interval)
+      }
+    } catch (error) {
       clearTimeout(timeoutReference)
-      resolve(undefined)
-    } else {
-      onIntervalTimeoutReference = setTimeout(onInterval, interval)
+      reject(error)
     }
   }
   let onIntervalTimeoutReference = setTimeout(onInterval, 0)

@@ -83,8 +83,12 @@ it('works if unzipped generator A is being consumed faster than unzipped generat
   const zipped = zip(generateEvenNumbers(), generateOddNumbers())
   const [unzippedEvenNumbers, unzippedOddNumbers] = unzip(zipped)
 
+  /** @type {number[]} */
   const evenNumbers = []
+
+  /** @type {number[]} */
   const oddNumbers = []
+
   await Promise.all([
     (async () => {
       for await (const currentEvenNumber of unzippedEvenNumbers) {
@@ -109,8 +113,12 @@ it('works if unzipped generator B is being consumed faster than unzipped generat
   const zipped = zip(generateEvenNumbers(), generateOddNumbers())
   const [unzippedEvenNumbers, unzippedOddNumbers] = unzip(zipped)
 
+  /** @type {number[]} */
   const evenNumbers = []
+
+  /** @type {number[]} */
   const oddNumbers = []
+
   await Promise.all([
     (async () => {
       await sleep(1)

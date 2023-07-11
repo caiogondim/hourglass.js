@@ -1,5 +1,5 @@
 /**
- * @template T 
+ * @template T
  * @param {(arg0: T) => boolean} predicate
  * @param {AsyncIterable<T>} gen
  * @yields {T}

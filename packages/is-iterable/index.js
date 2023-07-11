@@ -1,12 +1,13 @@
 /**
- * @param {unknown} object
- * @returns {boolean}
+ * @param {Object} x
+ * @returns {object is Iterable<any>}
  */
-function isIterable(object) {
-  if (!object) {
+function isIterable(x) {
+  if (!x) {
     return false
   }
-  return typeof object[Symbol.iterator] === 'function'
+  // @ts-expect-error
+  return typeof x[Symbol.iterator] === 'function'
 }
 
 export { isIterable }
