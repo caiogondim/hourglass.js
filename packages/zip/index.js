@@ -18,23 +18,19 @@ function isAnyGeneratorDone(generatedValues) {
 
 /**
  * @template T
- * @param {AsyncGenerator<T>[]} generators
- * @yields {T[]}
+ * @param {AsyncIterator<T>} gen1
+ * @param {AsyncIterator<T>} gen2
+ * @yields {[T, T]}
+ @returns {AsyncIterable<[T, T]>}
  */
-async function* zip(...generators) {
+async function* zip(gen1, gen2) {
   for (;;) {
-    /** @type {Promise<{ done?: boolean, value: T}>[]} */
-    const promises = []
-    for (const currentGenerator of generators) {
-      const currentAsyncIteration = currentGenerator.next()
-      promises.push(currentAsyncIteration)
-    }
-
+    const promises = [gen1.next(), gen2.next()]
     const generatedValues = await Promise.all(promises)
     if (isAnyGeneratorDone(generatedValues)) {
       return
     }
-    yield generatedValues.map((currentValue) => currentValue.value)
+    yield [generatedValues[0].value, generatedValues[1].value]
   }
 }
 

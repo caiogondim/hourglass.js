@@ -3,7 +3,7 @@
 
 /**
  * @template T
- * @param {AsyncIterable<T>} zipped
+ * @param {AsyncIterable<[T, T]>} zipped
  * @returns {[AsyncIterable<T>, AsyncIterable<T>]}
  */
 function unzip(zipped) {
@@ -19,12 +19,20 @@ function unzip(zipped) {
       zippedQueue2.push(value2)
 
       while (zippedQueue1.length > 0) {
-        yield zippedQueue1.shift()
+        const dequeuedValue = zippedQueue1.shift()
+        if (dequeuedValue === undefined || dequeuedValue === null) {
+          return
+        }
+        yield /** @type {T} */ (dequeuedValue)
       }
     }
 
     while (zippedQueue1.length > 0) {
-      yield zippedQueue1.shift()
+      const dequeuedValue = zippedQueue1.shift()
+      if (dequeuedValue === undefined || dequeuedValue === null) {
+        return
+      }
+      yield dequeuedValue
     }
   }
 
@@ -34,12 +42,20 @@ function unzip(zipped) {
       zippedQueue2.push(value2)
 
       while (zippedQueue2.length > 0) {
-        yield zippedQueue2.shift()
+        const dequeuedValue = zippedQueue2.shift()
+        if (dequeuedValue === undefined || dequeuedValue === null) {
+          return
+        }
+        yield dequeuedValue
       }
     }
 
     while (zippedQueue2.length > 0) {
-      yield zippedQueue2.shift()
+      const dequeuedValue = zippedQueue2.shift()
+      if (dequeuedValue === undefined || dequeuedValue === null) {
+        return
+      }
+      yield /** @type {T} */ (dequeuedValue)
     }
   }
 

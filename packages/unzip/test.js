@@ -5,6 +5,9 @@ import { consume } from '../consume/index.js'
 import { zip } from '../zip'
 import { unzip } from './index.js'
 
+/*
+ * @yield {number}
+ */
 async function* generateNumbers() {
   const nextTick = Promise.resolve()
   let index = 0
