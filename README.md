@@ -24,41 +24,45 @@
 - backoff 🚧
 - slowStart 🚧
     - inverted backoff
+- promiseWithResolvers
+  - polyfill from TC39 proposal
 
-### Iterables (Generators, Arrays, ...)
-
-- distinct 🚧
-- tee 🚧
-- delay 🚧
-- observe 🚧
-- playback 🚧
-- tap 🚧
-- roundRobin 🚧
-    - interleave https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.interleave
-- unique (distinct) 🚧
-- zip 🚧
-- collect 🚧
-- observe 🚧
-- drop
-- dropWhile
-- takeWhile
-- chunk
-- count
-- slidingWindow
-    - https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.sliding_window
-- distribute
-    - https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.distribute
-    - distribute into other generators
-- padStart
-- padEnd
-- unique
-- flatten
-- min
-- max
-- first
-- last
-- nth
-- sieve
+<!-- ### Iterables (Generators, Arrays, ...) -->
+<!---->
+<!-- - distinct 🚧 -->
+<!--   - use hash as key -->
+<!--   - must be serializable -->
+<!-- - tee 🚧 -->
+<!-- - delay 🚧 -->
+<!-- - observe 🚧 -->
+<!-- - playback 🚧 -->
+<!-- - tap 🚧 -->
+<!-- - roundRobin 🚧 -->
+<!--     - interleave https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.interleave -->
+<!-- - unique (distinct) 🚧 -->
+<!-- - zip 🚧 -->
+<!-- - collect 🚧 -->
+<!-- - observe 🚧 -->
+<!-- - drop -->
+<!-- - dropWhile -->
+<!-- - takeWhile -->
+<!-- - chunk -->
+<!-- - count -->
+<!-- - slidingWindow -->
+<!--     - https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.sliding_window -->
+<!-- - distribute -->
+<!--     - https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.distribute -->
+<!--     - distribute into other generators -->
+<!-- - padStart -->
+<!-- - padEnd -->
+<!-- - unique -->
+<!-- - flatten -->
+<!-- - min -->
+<!-- - max -->
+<!-- - first -->
+<!-- - last -->
+<!-- - nth -->
+<!-- - sieve -->
 
 
 ### Async Iterables (Streams, Web Streams, Async Generators, ...)
@@ -76,7 +80,7 @@
 - find 🚧
 - every 🚧
 - flatMap 🚧
-- drop (aka skip) 🚧
+- drop
 - dropWhile
 - take 🚧
 - enumerate 🚧
@@ -116,8 +120,8 @@ async function isElementMounted() {
 }
 
 await until(isElementMounted)
-```
 
+```
 #### `merge`
 
 ```mermaid
