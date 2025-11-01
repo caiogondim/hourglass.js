@@ -4,11 +4,10 @@
     "es2021": true,
     "jest": true
   },
-  "plugins": ["unicorn", "sonarjs", "import"],
+  "plugins": ["unicorn", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:unicorn/recommended",
-    "plugin:sonarjs/recommended",
     "plugin:import/recommended",
     "plugin:json/recommended"
   ],
@@ -20,7 +19,6 @@
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
     "unicorn/consistent-function-scoping": "off",
-    "sonarjs/prefer-while": "off",
     "import/no-default-export": 2,
     "import/no-nodejs-modules": 2,
     "import/first": 2,
