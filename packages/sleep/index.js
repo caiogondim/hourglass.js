@@ -1,7 +1,7 @@
 /**
  * @param {number} ms
  * @param {{
- *  jitter?: number
+ *   jitter?: number
  * }} options
  * @returns {Promise<undefined>}
  */

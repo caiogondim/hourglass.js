@@ -1,9 +1,8 @@
 import { jest, it, beforeEach, afterEach } from '@jest/globals'
 import { sleep } from '.'
 
-beforeEach(() => {
-  jest.useFakeTimers()
-})
+  jest.useFakeTimers({ doNotFake: ['performance'] })
+
 
 afterEach(() => {
   jest.clearAllTimers()
