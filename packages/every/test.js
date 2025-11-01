@@ -3,7 +3,6 @@
 import { compose } from '../compose'
 import { take } from '../take'
 import { filter } from '../filter'
-
 import { every } from '.'
 
 async function* generateNumbers() {
