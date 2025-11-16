@@ -5,6 +5,9 @@
   ],
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest packages",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest packages --coverage",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest packages --watch",
+    "test:watch:coverage": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest packages --watch --coverage --coverageReporters=text",
     "jest": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
     "fmt": "prettier --write 'packages/**/*.js' 'packages/**/*.json' './*.json'",
     "lint": "eslint --ext .js,.json --report-unused-disable-directives ./packages/",
