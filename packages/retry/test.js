@@ -41,7 +41,7 @@ it('retries if thunk throws error', async () => {
 it('retries up to `maxAttempts`', async () => {
   const backoff = async () => {}
   await expect(
-    retry(createThrowUntilN(3), { maxAttempts: 2, backoff })
+    retry(createThrowUntilN(3), { backoff, maxAttempts: 2 })
   ).rejects.toThrow(Error)
 })
 
@@ -64,7 +64,7 @@ it('retries in case `shouldRetry` returns true', async () => {
   }
 
   const backoff = async () => {}
-  await expect(retry(numberGenerator, { shouldRetry, backoff })).resolves.toBe(
+  await expect(retry(numberGenerator, { backoff, shouldRetry })).resolves.toBe(
     2
   )
 })
@@ -75,7 +75,7 @@ it('executes `onRetry` on each retry', async () => {
   const backoff = async () => {}
 
   const throwUntil3 = createThrowUntilN(maxAttempts)
-  await retry(throwUntil3, { maxAttempts, onRetry, backoff })
+  await retry(throwUntil3, { backoff, maxAttempts, onRetry })
   expect(onRetry).toHaveBeenCalledTimes(maxAttempts - 1)
 })
 
@@ -118,6 +118,7 @@ it('returns the returned value by `asyncThunk` argument', async () => {
   const asyncThunkOutput = 123
   const asyncThunk = async () => asyncThunkOutput
   const shouldRetry = () => true
+  const backoff = async () => {}
 
   // We are using `maxAttempts === 1` here to exercise a particular code path
   const maxAttempts = 1
@@ -126,7 +127,7 @@ it('returns the returned value by `asyncThunk` argument', async () => {
   // When
   //
 
-  const output = await retry(asyncThunk, { maxAttempts, shouldRetry })
+  const output = await retry(asyncThunk, { backoff, maxAttempts, shouldRetry })
 
   //
   // Then
