@@ -5,6 +5,10 @@ const path = require('path');
 const { spawn } = require('child_process');
 const readline = require('readline');
 
+// Parse command line arguments
+const args = process.argv.slice(2);
+const shouldClear = !args.includes('--no-clear');
+
 // Configuration
 const WATCH_DIR = path.join(process.cwd(), 'packages');
 const WATCH_EXTENSIONS = ['.js', '.json'];
@@ -34,6 +38,10 @@ function runLint(reason = 'File changed') {
   if (isRunning) {
     log('Lint already running, skipping...', colors.yellow);
     return;
+  }
+
+  if (shouldClear) {
+    console.clear();
   }
 
   isRunning = true;
@@ -115,10 +123,13 @@ function setupKeyboardListener() {
 }
 
 function main() {
-  console.clear();
+  if (shouldClear) {
+    console.clear();
+  }
   log(`${colors.bright}Starting lint watcher...${colors.reset}`, colors.green);
   log(`Watching: ${WATCH_DIR}`, colors.blue);
   log(`Extensions: ${WATCH_EXTENSIONS.join(', ')}`, colors.blue);
+  log(`Clear console: ${shouldClear ? 'enabled' : 'disabled'}`, colors.blue);
   log('Press SPACE to manually trigger lint, Ctrl+C to exit', colors.dim);
   console.log('');
 
