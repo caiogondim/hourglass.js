@@ -82,13 +82,13 @@
 - flatMap 🚧
 - drop
 - dropWhile
-- take 🚧
-- enumerate 🚧
+- take
+- enumerate
 - item 🚧
 - last 🚧
 - roundRobin 🚧
 - unique 🚧
-- zip 🚧
+- zip
 - collect 🚧
 - first 🚧
 - throttle 🚧
