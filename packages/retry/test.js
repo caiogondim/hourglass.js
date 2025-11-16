@@ -32,13 +32,17 @@ it('retries if thunk throws error', async () => {
   // Test behavior with `retry`
   //
 
-  await expect(retry(createThrowUntilN(3))).resolves.toEqual('lorem')
+  const backoff = async () => {}
+  await expect(retry(createThrowUntilN(3), { backoff })).resolves.toEqual(
+    'lorem'
+  )
 })
 
 it('retries up to `maxAttempts`', async () => {
-  await expect(retry(createThrowUntilN(3), { maxAttempts: 2 })).rejects.toThrow(
-    Error
-  )
+  const backoff = async () => {}
+  await expect(
+    retry(createThrowUntilN(3), { maxAttempts: 2, backoff })
+  ).rejects.toThrow(Error)
 })
 
 it('retries in case `shouldRetry` returns true', async () => {
@@ -46,7 +50,6 @@ it('retries in case `shouldRetry` returns true', async () => {
     let number = 0
     return async () => {
       number += 1
-      await sleep(1)
       return number
     }
   }
@@ -60,15 +63,19 @@ it('retries in case `shouldRetry` returns true', async () => {
     return number < 2
   }
 
-  await expect(retry(numberGenerator, { shouldRetry })).resolves.toBe(2)
+  const backoff = async () => {}
+  await expect(retry(numberGenerator, { shouldRetry, backoff })).resolves.toBe(
+    2
+  )
 })
 
 it('executes `onRetry` on each retry', async () => {
   const maxAttempts = 3
   const onRetry = jest.fn(() => {})
+  const backoff = async () => {}
 
   const throwUntil3 = createThrowUntilN(maxAttempts)
-  await retry(throwUntil3, { maxAttempts, onRetry })
+  await retry(throwUntil3, { maxAttempts, onRetry, backoff })
   expect(onRetry).toHaveBeenCalledTimes(maxAttempts - 1)
 })
 
@@ -80,9 +87,9 @@ it('backs off between each retry', async () => {
   const maxAttempts = 3
   const throwUntil3 = createThrowUntilN(3)
 
-  // A backoff function that sleeps for 100 ms
+  // A backoff function that sleeps for 10 ms
   async function backoff() {
-    await sleep(100)
+    await sleep(10)
   }
 
   //
@@ -99,8 +106,8 @@ it('backs off between each retry', async () => {
 
   // The delta of time from before running `retry` and after it's finished should be the number of `maxAttempts` minus 1, since the backoff function only runs in-between `onRetry` executions.
   const delta = Date.now() - before
-  expect(delta).toBeGreaterThanOrEqual(200)
-  expect(delta).toBeLessThan(250)
+  expect(delta).toBeGreaterThanOrEqual(20)
+  expect(delta).toBeLessThan(50)
 })
 
 it('returns the returned value by `asyncThunk` argument', async () => {
