@@ -1,7 +1,7 @@
 /**
  * @template T
  * @param {AsyncIterable<T>} gen
- * @yield {T}
+ * @returns {AsyncGenerator<[number, T]>}
  */
 async function* enumerate(gen) {
   let count = 0

@@ -33,7 +33,7 @@ it('resolves returned promise when thunk returns an expected value', async () =>
   // Then
   //
 
-  expect(counter).toBeCalledTimes(3)
+  expect(counter).toHaveBeenCalledTimes(3)
   expect(count.value).toEqual(3)
 })
 
@@ -56,7 +56,7 @@ it('re-evaluates thunk based on interval argument', async () => {
   // Then
   //
 
-  expect(counter).toBeCalledTimes(3)
+  expect(counter).toHaveBeenCalledTimes(3)
   expect(count.value).toEqual(3)
 })
 

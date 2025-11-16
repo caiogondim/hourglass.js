@@ -1,9 +1,8 @@
-import { jest, it, beforeEach, afterEach } from '@jest/globals'
+import { jest, it, afterEach } from '@jest/globals'
 import { sleep } from '.'
 
-beforeEach(() => {
-  jest.useFakeTimers()
-})
+  jest.useFakeTimers({ doNotFake: ['performance'] })
+
 
 afterEach(() => {
   jest.clearAllTimers()
@@ -34,7 +33,7 @@ it('returns a promise that is resolved after X miliseconds', async () => {
   // Assert
   //
 
-  expect(function_).toBeCalled()
+  expect(function_).toHaveBeenCalled()
 })
 
 it('adds jitter to base time', async () => {
@@ -68,8 +67,8 @@ it('adds jitter to base time', async () => {
   // Assert
   //
   try {
-    expect(function_).toBeCalled()
-    expect(Math.random).toBeCalled()
+    expect(function_).toHaveBeenCalled()
+    expect(Math.random).toHaveBeenCalled()
   } catch (error) {
     Math.random = originalMathRandom
     throw error

@@ -3,16 +3,12 @@ import { createBackoff } from '.'
 
 jest.setTimeout(30_000)
 
-function useFakeTimers() {
-  jest.useFakeTimers()
-}
-
 function clearFakeTimers() {
   jest.clearAllTimers()
 }
 
 beforeEach(() => {
-  useFakeTimers()
+  jest.useFakeTimers({ doNotFake: ['performance'] })
 })
 
 afterEach(() => {
@@ -92,7 +88,7 @@ it.skip('accepts `initial` as the initial back off time', async () => {
 })
 
 it.skip('adds jitter to time if `jitter` is passed', async () => {
-  useFakeTimers()
+  jest.useFakeTimers({ doNotFake: ['performance'] })
 
   const originalMathRandom = Math.random.bind(Math)
   Math.random = jest.fn(() => 0.5)
@@ -111,7 +107,7 @@ it.skip('adds jitter to time if `jitter` is passed', async () => {
       jest.advanceTimersByTime(1250)
     })(),
   ])
-  expect(function_).toBeCalled()
+  expect(function_).toHaveBeenCalled()
 
   await Promise.all([
     (async () => {

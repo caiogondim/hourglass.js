@@ -1,9 +1,12 @@
+// TODO: it's duplicate (skip and skip-while). verify which one rust uses and stick to it
+
+
 /**
  * @template T
-  * @param {number} n
-  * @param {AsyncIterable<T>} gen
-  * @yield {T}
-  */
+ * @param {number} n
+ * @param {AsyncIterable<T>} gen
+ * @yield {T}
+ */
 async function* drop(n, gen) {
   let index = 0
 

@@ -7,7 +7,8 @@ import { enumerate } from '../enumerate'
  * @yields {T}
  */
 async function* skip(n, gen) {
-  for await (const [currentIndex, currentValue] of enumerate(gen)) {
+  for await (const item of enumerate(gen)) {
+    const [currentIndex, currentValue] = item
     if (currentIndex < n) {
       continue
     }

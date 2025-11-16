@@ -20,7 +20,7 @@ async function* range(begin, end, iterable) {
     throw new RangeError('end must be greater than begin')
   }
 
-  for await (let [index, value] of enumerate(iterable)) {
+  for await (const [index, value] of enumerate(iterable)) {
     if (index < begin) {
       continue
     }
