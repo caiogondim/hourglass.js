@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run test:all:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
