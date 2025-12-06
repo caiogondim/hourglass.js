@@ -1,5 +1,5 @@
-- migrate to npm
-  - use npm workspaces
+- waitFor
+  - resolve promise once thunk stop throwing error
 - define all packages on README
   - each package needs to have installation step
   - example
