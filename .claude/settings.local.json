@@ -3,7 +3,16 @@
     "allow": [
       "WebSearch",
       "Bash(npm run type-check:*)",
-      "Bash(npm run test:all:*)"
+      "Bash(npm run test:all:*)",
+      "Bash(yarn test:*)",
+      "Bash(find:*)",
+      "Bash(for dir in /Users/caiogondim/Developer/personal/hourglass.js/packages/{is-async-generator-function,is-generator,is-generator-function,serialize,to-callback,chunks,buffer,event,pipeline,throttle,on-idle,tap,time-between,round-robin,all-settled-concurrent,rw-lock,unserialize})",
+      "Bash(do if [ ! -f \"$dir/package.json\" ])",
+      "Bash(then echo \"$dir\")",
+      "Bash(fi)",
+      "Bash(cat:*)",
+      "Bash(yarn lint:*)",
+      "Bash(yarn type-check:*)"
     ],
     "deny": [],
     "ask": []
