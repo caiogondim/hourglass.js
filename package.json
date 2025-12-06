@@ -14,7 +14,7 @@
     "lint:watch": "node scripts/lint-watch.js",
     "type-check": "tsc --p './tsconfig.json'",
     "type-check:watch": "node scripts/type-check-watch.js",
-    "test:all": "yarn test && yarn lint && yarn type-check"
+    "test:all": "npm run test && npm run lint && npm run type-check"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
